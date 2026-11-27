@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Mock Lens — Complete SSC & Railway mock test analysis, Mock Challenges, weak-topic tracking, Testbook AI auto-fill, flashcard re-attempts, and spaced revision plans. Works offline.">
+<title>Mock Lens</title>
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="theme-color" content="#0F172A">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap">
+<style>
+/* ==========================================================================
+   MOCK LENS v4 — MODERN BENTO + TACTILE GLASS DESIGN SYSTEM
+   ========================================================================== */
+:root{
+  --bg:#F4F6FB;
+  --bg-grad-1:rgba(79,70,229,.09);
+  --bg-grad-2:rgba(14,165,233,.07);
+  --surface:#FFFFFF;
+  --surface-2:#F8FAFC;
+  --glass:rgba(255,255,255,.82);
+  --ink:#0F172A;
+  --muted:#64748B;
+  --line:#E2E8F0;
+  --soft:#EEF2F6;
+
+  /* SSC Royal Indigo & Railway Warm Amber */
+  --ssc:#4F46E5;
+  --ssc-2:#7C3AED;
+  --rail:#D97706;
+  --rail-2:#EA580C;
+  --accent:var(--ssc);
+  --accent-2:var(--ssc-2);
+  --on-accent:#FFFFFF;
+
+  /* Semantic Status */
+  --good:#059669; --good-bg:#ECFDF5; --good-border:#A7F3D0;
+  --warn:#D97706; --warn-bg:#FFFBEB; --warn-border:#FDE68A;
+  --bad:#E11D48;  --bad-bg:#FFF1F2;  --bad-border:#FECDD3;
+
+  /* Typography */
+  --f-head:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-body:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-num:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+
+  /* Elevation & Radii */
+  --r-sm:10px;
+  --r-md:14px;
+  --r-lg:20px;
+  --r-xl:24px;
+  --shadow-xs:0 1px 2px rgba(15,23,42,.04);
+  --shadow-sm:0 4px 12px -2px rgba(15,23,42,.05),0 1px 3px rgba(15,23,42,.03);
+  --shadow-md:0 14px 32px -12px rgba(15,23,42,.10),0 4px 10px -4px rgba(15,23,42,.04);
+  --shadow-glow:0 10px 24px -8px color-mix(in srgb,var(--accent) 45%,transparent);
+}
+
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#070B14;
+  --bg-grad-1:rgba(99,102,241,.16);
+  --bg-grad-2:rgba(56,189,248,.10);
+  --surface:#0F1626;
+  --surface-2:#141D31;
+  --glass:rgba(15,22,38,.82);
+  --ink:#F1F5F9;
+  --muted:#94A3B8;
+  --line:#1E293B;
+  --soft:#172033;
+  --ssc:#818CF8;
+  --ssc-2:#A78BFA;
+  --rail:#FBBF24;
+  --rail-2:#FB923C;
+  --on-accent:#070B14;
+  --good:#34D399; --good-bg:rgba(16,185,129,.13); --good-border:rgba(52,211,153,.28);
+  --warn:#FBBF24; --warn-bg:rgba(245,158,11,.13); --warn-border:rgba(251,191,36,.28);
+  --bad:#FB7185;  --bad-bg:rgba(244,63,94,.14);  --bad-border:rgba(251,113,133,.28);
+  --shadow-xs:0 1px 2px rgba(0,0,0,.3);
+  --shadow-sm:0 6px 16px -4px rgba(0,0,0,.45);
+  --shadow-md:0 18px 40px -14px rgba(0,0,0,.65);
+  color-scheme:dark;
+}}
+
+:root[data-theme="dark"]{
+  --bg:#070B14;
+  --bg-grad-1:rgba(99,102,241,.16);
+  --bg-grad-2:rgba(56,189,248,.10);
+  --surface:#0F1626;
+  --surface-2:#141D31;
+  --glass:rgba(15,22,38,.82);
+  --ink:#F1F5F9;
+  --muted:#94A3B8;
+  --line:#1E293B;
+  --soft:#172033;
+  --ssc:#818CF8;
+  --ssc-2:#A78BFA;
+  --rail:#FBBF24;
+  --rail-2:#FB923C;
+  --on-accent:#070B14;
+  --good:#34D399; --good-bg:rgba(16,185,129,.13); --good-border:rgba(52,211,153,.28);
+  --warn:#FBBF24; --warn-bg:rgba(245,158,11,.13); --warn-border:rgba(251,191,36,.28);
+  --bad:#FB7185;  --bad-bg:rgba(244,63,94,.14);  --bad-border:rgba(251,113,133,.28);
+  --shadow-xs:0 1px 2px rgba(0,0,0,.3);
+  --shadow-sm:0 6px 16px -4px rgba(0,0,0,.45);
+  --shadow-md:0 18px 40px -14px rgba(0,0,0,.65);
+  color-scheme:dark;
+}
+
+body[data-fam="rail"]{--accent:var(--rail);--accent-2:var(--rail-2)}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(900px 420px at 85% -10%,var(--bg-grad-1),transparent 65%),
+    radial-gradient(700px 380px at 10% 15%,var(--bg-grad-2),transparent 60%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--glass);z-index:40}
+
+::-webkit-scrollbar{width:7px;height:7px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+
+h1,h2,h3{font-family:var(--f-head);margin:0;text-wrap:balance;letter-spacing:-.02em;font-weight:700}
+h2{font-size:1.22rem}
+h3{font-size:1.02rem}
+a{color:var(--accent);text-decoration-thickness:1.5px;text-underline-offset:3px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* App Shell */
+.shell{display:grid;grid-template-columns:246px minmax(0,1fr);min-height:100vh;transition:grid-template-columns .24s cubic-bezier(.2,.8,.2,1)}
+.shell.collapsed{grid-template-columns:72px minmax(0,1fr)}
+.side{
+  position:sticky;top:0;align-self:start;height:100vh;
+  padding:20px 14px;
+  border-right:1px solid var(--line);
+  background:var(--glass);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;gap:18px;
+  overflow-y:auto;overflow-x:hidden;
+  transition:padding .24s ease;
+}
+.shell.collapsed .side{padding:20px 10px;align-items:center}
+.side-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%}
+.shell.collapsed .side-hd{justify-content:center}
+.brand{
+  font-family:var(--f-head);font-weight:800;font-size:1.24rem;letter-spacing:-.03em;
+  display:flex;align-items:center;gap:10px;padding:0 4px;white-space:nowrap;
+}
+.shell.collapsed .brand-txt,.shell.collapsed .nav-txt,.shell.collapsed .side-foot{display:none}
+.side-btn{
+  width:32px;height:32px;border-radius:9px;border:1px solid var(--line);
+  background:var(--surface);color:var(--muted);display:grid;place-items:center;
+  cursor:pointer;flex:none;transition:all .16s ease;
+}
+.side-btn:hover{color:var(--ink);border-color:var(--accent);background:var(--soft)}
+.side-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;transition:transform .24s ease}
+.shell.collapsed .side-btn svg{transform:rotate(180deg)}
+.shell.collapsed .nav{width:100%;align-items:center}
+.shell.collapsed .nav a{justify-content:center;padding:11px;width:44px;height:44px}
+.shell.collapsed .nav a:hover{transform:none}
+.logo{
+  width:32px;height:32px;border-radius:10px;display:grid;place-items:center;flex:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  color:var(--on-accent);
+  box-shadow:var(--shadow-glow);
+}
+.logo svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round}
+
+.nav{display:flex;flex-direction:column;gap:3px}
+.nav a{
+  display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:12px;
+  color:var(--muted);text-decoration:none;font-weight:600;font-size:.91rem;
+  transition:all .18s cubic-bezier(.2,.8,.2,1);
+}
+.nav a svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;transition:transform .18s ease}
+.nav a:hover{background:var(--soft);color:var(--ink);transform:translateX(2px)}
+.nav a.on{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 14%,var(--surface)),color-mix(in srgb,var(--accent-2) 8%,var(--surface)));
+  color:var(--ink);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 26%,transparent),var(--shadow-xs);
+}
+.nav a.on svg{color:var(--accent)}
+
+.mainwrap{min-width:0;display:flex;flex-direction:column}
+.top{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:15;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between;
+  padding-block:12px;
+  padding-left:max(20px,env(safe-area-inset-left,0px));
+  padding-right:max(20px,env(safe-area-inset-right,0px));
+  background:var(--glass);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);
+}
+.top .l,.top .r{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.main{
+  width:100%;max-width:1060px;margin:0 auto;
+  padding-block:20px 58px;
+  padding-left:max(20px,env(safe-area-inset-left,0px));
+  padding-right:max(20px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:20px;
+}
+.bar{display:none}
+
+/* Built-in Top Timer Widget */
+.timer-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:99px;padding:3px 6px 3px 11px;
+  font-size:.82rem;font-weight:700;box-shadow:var(--shadow-xs);
+}
+.timer-pill.running{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
+.timer-pill.done{border-color:var(--bad);background:var(--bad-bg);color:var(--bad);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.65}}
+.tbtn{
+  border:0;background:var(--soft);color:var(--ink);
+  border-radius:99px;padding:3px 8px;font-size:.74rem;font-weight:700;cursor:pointer;
+}
+.tbtn:hover{background:var(--accent);color:var(--on-accent)}
+
+/* Pills & Badges */
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.75rem;font-weight:700;letter-spacing:.01em;
+  padding:4px 10px;border-radius:99px;
+  background:var(--soft);color:var(--muted);
+  border:1px solid color-mix(in srgb,var(--line) 80%,transparent);
+  white-space:nowrap;
+}
+.pill.good{background:var(--good-bg);color:var(--good);border-color:var(--good-border)}
+.pill.warn{background:var(--warn-bg);color:var(--warn);border-color:var(--warn-border)}
+.pill.bad{background:var(--bad-bg);color:var(--bad);border-color:var(--bad-border)}
+.pill.acc{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  color:var(--on-accent);border:0;
+  box-shadow:0 4px 12px -4px color-mix(in srgb,var(--accent) 55%,transparent);
+}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 2px color-mix(in srgb,currentColor 25%,transparent)}
+
+/* Tactile Buttons */
+.btn{
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:9px 15px;border-radius:11px;
+  font-weight:600;font-size:.9rem;cursor:pointer;min-height:40px;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  box-shadow:var(--shadow-xs);
+  transition:transform .14s ease,box-shadow .18s ease,background .15s ease,border-color .15s ease;
+}
+.btn:hover:not(:disabled){background:var(--surface-2);border-color:color-mix(in srgb,var(--muted) 45%,var(--line));transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.btn:active:not(:disabled){transform:translateY(0) scale(.985)}
+.btn.pri{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  border:0;color:var(--on-accent);
+  box-shadow:var(--shadow-glow);
+}
+.btn.pri:hover:not(:disabled){filter:brightness(1.06);box-shadow:0 12px 26px -8px color-mix(in srgb,var(--accent) 60%,transparent)}
+.btn.good{color:var(--good);border-color:var(--good-border);background:var(--good-bg)}
+.btn.bad{color:var(--bad);border-color:var(--bad-border);background:var(--bad-bg)}
+.btn.sm{padding:5px 11px;min-height:33px;font-size:.82rem;border-radius:9px}
+.btn:disabled{opacity:.48;cursor:not-allowed}
+
+/* Bento Cards & Sections */
+.sec{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:20px;
+  display:flex;flex-direction:column;gap:14px;
+  min-width:0;
+  box-shadow:var(--shadow-sm);
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+.sec:hover{border-color:color-mix(in srgb,var(--accent) 22%,var(--line))}
+.sec>header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.muted{color:var(--muted)}.small{font-size:.84rem}
+.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+
+/* Hero Banner */
+.hero{
+  display:flex;gap:24px;align-items:center;
+  padding:26px 28px;border-radius:var(--r-xl);
+  color:#FFFFFF;
+  background:
+    radial-gradient(500px 260px at 95% 10%,rgba(255,255,255,.18),transparent 65%),
+    linear-gradient(135deg,color-mix(in srgb,var(--accent) 82%,#090D16),color-mix(in srgb,var(--accent-2) 65%,#090D16));
+  box-shadow:0 20px 44px -18px color-mix(in srgb,var(--accent) 60%,#000);
+  position:relative;overflow:hidden;min-width:0;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.12) 1px,transparent 1px);
+  background-size:18px 18px;opacity:.35;pointer-events:none;
+}
+.hero>div{min-width:0;position:relative;z-index:1}
+.ring{position:relative;width:112px;height:112px;flex:none;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .tr{stroke:rgba(255,255,255,.18)}
+.ring .pg{fill:none;stroke:#FFFFFF;stroke-linecap:round;transition:stroke-dashoffset .7s cubic-bezier(.2,.8,.2,1)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-head);font-weight:800;font-size:1.6rem;letter-spacing:-.03em}
+.hero .eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;opacity:.82}
+.hero h2{font-size:1.46rem;font-weight:800;margin:5px 0 14px;color:#FFFFFF;line-height:1.22}
+.hero .hm{display:flex;gap:8px;flex-wrap:wrap}
+.hero .hm span{
+  background:rgba(255,255,255,.16);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:99px;padding:4px 13px;font-size:.8rem;font-weight:600;
+}
+
+/* KPI Strip (Bento Tiles) */
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px;border:0;background:none;overflow:visible}
+.strip>div,.strip>div:last-child{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+  box-shadow:var(--shadow-xs);
+  padding:15px 16px;
+  min-width:0;
+  position:relative;overflow:hidden;
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+.strip>div:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.strip>div::after{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3.5px;
+  background:linear-gradient(180deg,var(--accent),var(--accent-2));opacity:.75;
+}
+.strip b{display:block;font-family:var(--f-head);font-weight:800;font-size:1.58rem;line-height:1.12;letter-spacing:-.03em}
+.strip span{display:block;margin-top:4px;font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:20px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field label,.lbl{font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* Inputs & Controls */
+input[type=text],input[type=search],input[type=date],input[type=number],input[type=password],select,textarea{
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:9px 12px;min-height:42px;width:100%;min-width:0;
+  transition:border-color .16s ease,box-shadow .16s ease,background .16s ease;
+}
+input:hover,select:hover,textarea:hover{border-color:color-mix(in srgb,var(--muted) 45%,var(--line))}
+input:focus,select:focus,textarea:focus{
+  outline:none;background:var(--surface);
+  border-color:var(--accent);
+  box-shadow:0 0 0 3.5px color-mix(in srgb,var(--accent) 18%,transparent);
+}
+textarea{min-height:80px;resize:vertical}
+input.bad{border-color:var(--bad)!important;background:var(--bad-bg)!important}
+
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:13px}
+.sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.secbox{
+  border:1px solid var(--line);border-radius:var(--r-md);padding:14px;
+  background:var(--surface-2);
+  display:flex;flex-direction:column;gap:11px;
+}
+.secbox .hd{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:baseline}
+details>summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--muted);padding:4px 0;user-select:none}
+details>summary:hover{color:var(--ink)}
+.tgrid{display:grid;grid-template-columns:minmax(0,1fr) 58px 58px 58px;gap:6px 7px;align-items:center;margin-top:8px}
+.tgrid input{min-height:36px;padding:4px 8px;text-align:center;font-family:var(--f-num)}
+.tgrid .h{font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;text-align:center}
+.tgrid .h:first-child{text-align:left}
+
+/* Floating Live Score Pill */
+.live{
+  position:sticky;bottom:calc(68px + env(safe-area-inset-bottom,0px));
+  background:var(--ink);color:var(--bg);
+  border-radius:16px;padding:12px 18px;
+  display:flex;gap:14px;justify-content:space-between;align-items:center;flex-wrap:wrap;z-index:5;
+  box-shadow:0 18px 36px -10px rgba(15,23,42,.45);
+}
+
+/* Lists & Progress Bars */
+.list{display:flex;flex-direction:column}
+.item{
+  display:flex;gap:12px;align-items:center;justify-content:space-between;
+  padding:13px 4px;border-top:1px solid var(--line);flex-wrap:wrap;
+  transition:background .14s ease;
+}
+.item:first-child{border-top:0;padding-top:4px}
+.item:last-child{padding-bottom:4px}
+.item .t{min-width:0;flex:1 1 210px}
+.item .t a{text-decoration:none;color:var(--ink)}
+.item .t a:hover{color:var(--accent)}
+
+.bars{display:flex;flex-direction:column;gap:12px}
+.bw{display:grid;grid-template-columns:minmax(95px,155px) minmax(0,1fr) 58px;gap:12px;align-items:center;font-size:.89rem;font-weight:500}
+.track{height:10px;background:var(--soft);border-radius:99px;position:relative;overflow:hidden}
+.fill{position:absolute;inset:0 auto 0 0;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+.fill.good{background:linear-gradient(90deg,#10B981,#059669)}
+.fill.warn{background:linear-gradient(90deg,#F59E0B,#D97706)}
+.fill.bad{background:linear-gradient(90deg,#F43F5E,#E11D48)}
+@media (prefers-reduced-motion:no-preference){.fill{transition:width .55s cubic-bezier(.2,.8,.2,1)}}
+
+/* Challenge Cards & Presets */
+.chal-card{
+  border:1px solid color-mix(in srgb,var(--accent) 32%,var(--line));
+  background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 7%,var(--surface)),color-mix(in srgb,var(--accent-2) 4%,var(--surface)));
+  border-radius:var(--r-md);padding:16px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.chal-card.done{
+  border-color:var(--good-border);
+  background:linear-gradient(135deg,var(--good-bg),var(--surface));
+}
+.preset-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.preset-btn{
+  text-align:left;padding:12px 14px;border-radius:12px;
+  border:1px solid var(--line);background:var(--surface-2);
+  cursor:pointer;display:flex;flex-direction:column;gap:3px;
+  transition:all .15s ease;
+}
+.preset-btn:hover{border-color:var(--accent);background:var(--surface);transform:translateY(-1px);box-shadow:var(--shadow-xs)}
+
+/* 14-Day Streak Heatmap */
+.streak-grid{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:5px}
+.sday{
+  aspect-ratio:1;border-radius:7px;background:var(--soft);border:1px solid var(--line);
+  display:grid;place-items:center;font-size:.66rem;font-weight:700;color:var(--muted);
+}
+.sday.hit{background:linear-gradient(135deg,var(--good),#10B981);color:#fff;border-color:transparent}
+.sday.tod{box-shadow:0 0 0 2px var(--accent)}
+
+/* Flashcard Quiz Card */
+.flashcard{
+  border:1.5px solid color-mix(in srgb,var(--accent) 35%,var(--line));
+  background:var(--surface-2);border-radius:var(--r-lg);padding:22px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.flash-q{font-size:1.06rem;font-weight:600;line-height:1.5}
+.flash-ans{
+  padding:14px;border-radius:12px;background:var(--good-bg);border:1px solid var(--good-border);
+  color:var(--ink);
+}
+
+/* Filter Chips */
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{
+  border:1px solid var(--line);background:var(--surface);
+  border-radius:99px;padding:6px 13px;font-size:.82rem;font-weight:600;cursor:pointer;
+  transition:all .15s ease;
+}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip.on{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  border-color:transparent;color:var(--on-accent);
+  box-shadow:0 4px 12px -4px color-mix(in srgb,var(--accent) 55%,transparent);
+}
+
+/* Callout Insights & Checklists */
+.ins{
+  display:flex;gap:11px;align-items:flex-start;
+  padding:12px 14px;border-radius:12px;
+  background:var(--soft);border:1px solid var(--line);font-size:.92rem;
+}
+.ins.good{background:var(--good-bg);border-color:var(--good-border)}
+.ins.warn{background:var(--warn-bg);border-color:var(--warn-border)}
+.ins.bad{background:var(--bad-bg);border-color:var(--bad-border)}
+
+.chk{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line);cursor:pointer}
+.chk:first-of-type{border-top:0}
+.chk input{width:19px;height:19px;margin-top:2px;flex:none;accent-color:var(--accent);cursor:pointer}
+.chk.done span{text-decoration:line-through;color:var(--muted)}
+
+/* Tables */
+.scroll{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+th{background:var(--surface-2);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+tbody tr:hover td{background:color-mix(in srgb,var(--accent) 4%,transparent)}
+td.r,th.r{text-align:right}
+
+.banner{
+  display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  background:var(--warn-bg);border:1px solid var(--warn-border);
+  color:var(--ink);border-radius:var(--r-md);padding:12px 16px;font-size:.9rem;
+}
+.empty{padding:26px;text-align:center;color:var(--muted);border:1.5px dashed var(--line);border-radius:var(--r-md);background:var(--surface-2)}
+
+/* Interactive SVG Chart */
+svg.chart text{fill:var(--muted);font-size:11px;font-family:var(--f-num)}
+svg.chart .grid{stroke:var(--line);stroke-width:1;stroke-dasharray:3 3}
+svg.chart .ln{stroke:var(--accent);stroke-width:2.75;stroke-linecap:round;stroke-linejoin:round;fill:none;filter:drop-shadow(0 4px 8px color-mix(in srgb,var(--accent) 35%,transparent))}
+svg.chart .ar{opacity:.95}
+svg.chart .pt{fill:var(--surface);stroke:var(--accent);stroke-width:2.2;cursor:pointer;transition:r .15s ease,fill .15s ease}
+svg.chart .pt:hover,svg.chart .pt.sel{r:6.5;fill:var(--accent)}
+svg.chart .pt.last{fill:var(--accent)}
+svg.chart .tg{stroke:var(--warn);stroke-width:1.5;stroke-dasharray:5 4}
+svg.chart text.tgl{fill:var(--warn);font-weight:600}
+svg.chart text.lv{fill:var(--ink);font-weight:700}
+.chart-tip{
+  font-size:.84rem;color:var(--muted);padding:8px 12px;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:10px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+
+.toggle-row{
+  display:flex;align-items:center;gap:11px;padding:11px 14px;
+  border:1px solid var(--line);border-radius:12px;background:var(--surface-2);
+  cursor:pointer;font-weight:600;transition:border-color .15s ease;
+}
+.toggle-row:hover{border-color:var(--accent)}
+.toggle-row input{width:18px;height:18px;accent-color:var(--accent)}
+
+.autofill-box{
+  border:1.5px dashed color-mix(in srgb,var(--accent) 55%,var(--line));
+  background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 6%,var(--surface)),color-mix(in srgb,var(--accent-2) 4%,var(--surface)));
+  border-radius:var(--r-md);padding:14px;
+}
+.autofill-box summary{color:var(--accent);font-weight:700}
+
+#toast{
+  position:fixed;left:50%;transform:translateX(-50%);
+  bottom:calc(78px + env(safe-area-inset-bottom,0px));
+  background:var(--ink);color:var(--bg);
+  padding:10px 18px;border-radius:99px;font-size:.86rem;font-weight:600;
+  z-index:30;max-width:90vw;text-align:center;
+  box-shadow:0 12px 28px -6px rgba(15,23,42,.45);
+}
+#toast[hidden]{display:none!important}
+
+.aitext p{margin:0 0 8px}.aitext ul{margin:0 0 8px;padding-left:20px}.aitext li{margin-bottom:5px}
+.aibox{border-top:1px dashed var(--line);padding-top:10px;margin-top:8px}
+ol.steps{margin:0;padding-left:20px}
+
+@media (prefers-reduced-motion:no-preference){
+  .enter>*{animation:rise .36s cubic-bezier(.2,.8,.2,1) both}
+  .enter>*:nth-child(2){animation-delay:.04s}
+  .enter>*:nth-child(3){animation-delay:.08s}
+  .enter>*:nth-child(4){animation-delay:.12s}
+}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+@media (min-width:861px){.top h1{display:none}}
+
+/* Mobile Responsive & Floating Glass Dock */
+@media (max-width:860px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .side{display:none}
+  .main{padding:14px 14px 132px;gap:16px}
+  .top{padding-inline:14px}
+  .bar{
+    display:grid;grid-template-columns:repeat(6,minmax(0,1fr));align-items:end;
+    position:fixed;
+    left:max(8px,env(safe-area-inset-left,0px));
+    right:max(8px,env(safe-area-inset-right,0px));
+    bottom:calc(8px + env(safe-area-inset-bottom,0px));
+    padding:6px 4px 7px;
+    border:1px solid var(--line);border-radius:22px;
+    background:var(--glass);
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    box-shadow:0 16px 36px -10px rgba(15,23,42,.35);
+    z-index:20;overflow:visible;
+  }
+  .bar a{
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;
+    font-size:.63rem;font-weight:700;color:var(--muted);text-decoration:none;
+    padding:5px 2px;border-radius:14px;min-width:0;white-space:nowrap;
+  }
+  .bar a svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .bar a.on{color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+  .bar a.add{color:var(--accent);background:none;position:relative;padding-top:0}
+  .bar a.add.on{color:var(--accent);background:none}
+  .bar a.add span{
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    border-radius:99px;width:42px;height:42px;display:grid;place-items:center;
+    margin-top:-22px;margin-bottom:1px;border:3px solid var(--surface);
+    box-shadow:var(--shadow-glow);transition:transform .16s ease;
+  }
+  .bar a.add:active span{transform:scale(.93)}
+  .bar a.add svg{width:21px;height:21px;stroke:var(--on-accent);stroke-width:2.3}
+  .live{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+  #toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
+  .hero{padding:20px;gap:16px}
+  .ring{width:86px;height:86px}.ring b{font-size:1.25rem}
+  .hero h2{font-size:1.18rem;margin-bottom:10px}
+  .strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bw{grid-template-columns:92px minmax(0,1fr) 50px}
+}
+
+/* Print / PDF Export Styling */
+@media print{
+  body{background:#fff!important;color:#000!important}
+  .side,.top,.bar,.btn,.chips,.autofill-box,.aibox,.banner,.no-print{display:none!important}
+  .shell{display:block}
+  .main{max-width:100%;padding:0}
+  .sec{box-shadow:none!important;border:1px solid #ccc!important;break-inside:avoid;margin-bottom:14px}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="toast" hidden></div>
+<script>
+(function(){
+'use strict';
+var LS='mocklens.v1';
+var SUBJ={quant:'Quant',rea:'Reasoning',eng:'English',ga:'GA',sci:'Science',comp:'Computer'};
+var SUBJ_FULL={quant:'Quantitative Aptitude',rea:'Reasoning',eng:'English',ga:'General Awareness',sci:'General Science',comp:'Computer'};
+
+var TOP={
+quant:[['Percentage',3],['Profit, Loss & Discount',3],['Ratio & Proportion',2],['Average',2],['Time & Work',3],['Time, Speed & Distance',3],['Simple & Compound Interest',2],['Number System',3],['HCF & LCM',2],['Algebra',3],['Geometry',3],['Mensuration',3],['Trigonometry',3],['Data Interpretation',3],['Simplification & Approximation',2],['Mixture & Alligation',1],['Partnership',1],['Ages',1],['Pipes & Cisterns',1],['Statistics',1]],
+rea:[['Analogy',3],['Classification',2],['Number & Letter Series',3],['Coding-Decoding',3],['Blood Relations',2],['Direction Sense',2],['Syllogism',2],['Venn Diagram',2],['Ranking & Order',2],['Puzzle & Seating',3],['Mathematical Operations',3],['Missing Number',2],['Calendar & Clock',1],['Non-Verbal (Mirror, Paper Folding, Embedded)',2],['Statement & Conclusion',2],['Alphabet & Word Formation',1]],
+eng:[['Reading Comprehension',3],['Cloze Test',3],['Error Spotting',3],['Sentence Improvement',2],['Fill in the Blanks',2],['Synonyms & Antonyms',3],['Idioms & Phrases',3],['One-Word Substitution',3],['Para Jumbles',2],['Active & Passive Voice',1],['Direct & Indirect Speech',1],['Spelling Error',1]],
+ga:[['History (Ancient, Medieval, Modern)',2],['Art & Culture',2],['Geography',3],['Polity',3],['Economy',2],['Static GK',2],['Current Affairs',3],['Awards, Books & Sports',2],['Physics',2],['Chemistry',2],['Biology',2],['Science & Technology',1]],
+sci:[['Physics: Motion, Force & Work',3],['Physics: Light, Sound & Heat',3],['Physics: Electricity & Magnetism',3],['Chemistry: Matter & Atoms',3],['Chemistry: Acids, Bases & Metals',3],['Chemistry: Everyday Chemistry',2],['Biology: Human Body',3],['Biology: Plants & Cells',2],['Biology: Diseases & Nutrition',3]],
+comp:[['Computer Fundamentals',3],['MS Office',3],['Internet & Email',2],['Networking & Security',2],['Number Systems & Shortcuts',2]]
+};
+
+var S=function(k,n,subj,q,m,neg,qual){return {k:k,n:n,subj:subj,q:q,m:m,neg:neg,qual:!!qual};};
+var T3=1/3;
+var EXAMS={
+cgl1:{name:'SSC CGL Tier 1',fam:'ssc',dur:60,ok:1,secs:[S('rea','Reasoning','rea',25,2,.5),S('ga','General Awareness','ga',25,2,.5),S('qa','Quantitative Aptitude','quant',25,2,.5),S('eng','English','eng',25,2,.5)]},
+cgl2:{name:'SSC CGL Tier 2 (Paper I)',fam:'ssc',dur:135,ok:1,secs:[S('qa','Mathematical Abilities','quant',30,3,1),S('rea','Reasoning & GI','rea',30,3,1),S('eng','English Language','eng',45,3,1),S('ga','General Awareness','ga',25,3,1),S('comp','Computer Knowledge','comp',20,3,1,true)]},
+chsl1:{name:'SSC CHSL Tier 1',fam:'ssc',dur:60,ok:1,secs:[S('eng','English','eng',25,2,.5),S('rea','Reasoning','rea',25,2,.5),S('qa','Quantitative Aptitude','quant',25,2,.5),S('ga','General Awareness','ga',25,2,.5)]},
+gd:{name:'SSC GD Constable',fam:'ssc',dur:60,ok:1,secs:[S('rea','Reasoning','rea',20,2,.25),S('ga','GK & Awareness','ga',20,2,.25),S('qa','Elementary Maths','quant',20,2,.25),S('eng','English / Hindi','eng',20,2,.25)]},
+ntpc1:{name:'RRB NTPC CBT 1',fam:'rail',dur:90,ok:1,secs:[S('ga','General Awareness','ga',40,1,T3),S('qa','Mathematics','quant',30,1,T3),S('rea','Reasoning','rea',30,1,T3)]},
+ntpc2:{name:'RRB NTPC CBT 2',fam:'rail',dur:90,ok:1,secs:[S('ga','General Awareness','ga',50,1,T3),S('qa','Mathematics','quant',35,1,T3),S('rea','Reasoning','rea',35,1,T3)]},
+grd:{name:'RRB Group D CBT',fam:'rail',dur:90,ok:1,secs:[S('sci','General Science','sci',25,1,T3),S('qa','Mathematics','quant',25,1,T3),S('rea','Reasoning','rea',30,1,T3),S('ga','GA & Current Affairs','ga',20,1,T3)]},
+alp:{name:'RRB ALP CBT 1',fam:'rail',dur:60,ok:1,secs:[S('qa','Mathematics','quant',20,1,T3),S('rea','Reasoning','rea',25,1,T3),S('sci','Basic Science & Engg','sci',20,1,T3),S('ga','General Awareness','ga',10,1,T3)]}
+};
+var INT=[1,3,7,14,30];
+var MIST={concept:'Concept gap',silly:'Silly mistake',time:'Time pressure',guess:'Blind guess'};
+var MIST_TIP={
+  concept:'Most of your lost marks are concept gaps. Revise the notes for the red topics before doing more mocks.',
+  silly:'Silly mistakes dominate. Keep 8 to 10 minutes for a check pass and read all four options before marking.',
+  time:'Time pressure is your main loss. Practise timed sectionals and skip any question that takes longer than 60 seconds.',
+  guess:'Blind guesses cost you marks. Guess only after you have removed two options.'
+};
+var DIFF={easy:'Easy',moderate:'Moderate',hard:'Hard'};
+
+/* ---------- helpers ---------- */
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function pad(n){return String(n).padStart(2,'0');}
+function ds(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function today(){return ds(new Date());}
+function addDays(s,n){var p=s.split('-').map(Number);return ds(new Date(p[0],p[1]-1,p[2]+n));}
+function dayDiff(a,b){var x=a.split('-').map(Number),y=b.split('-').map(Number);return Math.round((new Date(y[0],y[1]-1,y[2])-new Date(x[0],x[1]-1,x[2]))/864e5);}
+function fmtD(s){if(!s)return '';var p=s.split('-').map(Number);return new Date(p[0],p[1]-1,p[2]).toLocaleDateString('en-IN',{day:'numeric',month:'short'});}
+function fmtDW(s){if(!s)return '';var p=s.split('-').map(Number);return new Date(p[0],p[1]-1,p[2]).toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});}
+function r1(n){return Math.round(n*10)/10;}
+function r2(n){return Math.round(n*100)/100;}
+function uid(){return Math.random().toString(36).slice(2,9);}
+function sum(a,f){return a.reduce(function(s,x){return s+f(x);},0);}
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+
+/* ---------- state ---------- */
+var storageOk=true;
+function defState(){return {v:1,settings:{exam:'cgl1',examDate:'',target:70,hours:3,custom:[],theme:'',lastExport:'',ai:{key:'',model:'gemini-2.5-flash',lang:'Hinglish'}},tests:[],errors:[],challenges:[],activity:{},plan:null,rev:{},ui:{}};}
+function fix(s){
+  var d=defState();s=s||d;
+  s.settings=Object.assign(d.settings,s.settings||{});
+  s.settings.ai=Object.assign({key:'',model:'gemini-2.5-flash',lang:'Hinglish'},s.settings.ai||{});
+  if(s.settings.ai.model==='gemini-3.5-flash')s.settings.ai.model='gemini-2.5-flash';
+  s.tests=s.tests||[];s.errors=s.errors||[];s.challenges=s.challenges||[];s.activity=s.activity||{};
+  s.rev=s.rev||{};s.ui=s.ui||{};s.settings.custom=s.settings.custom||[];
+  return s;
+}
+function logActivity(){state.activity[today()]=(state.activity[today()]||0)+1;}
+function load(){
+  var s=null;try{s=JSON.parse(localStorage.getItem(LS));}catch(e){}
+  if(!s||!s.tests){s=fix(null);seed(s);}
+  return fix(s);
+}
+function save(){try{localStorage.setItem(LS,JSON.stringify(state));storageOk=true;}catch(e){storageOk=false;}}
+var state;
+
+function allExams(){var o=Object.assign({},EXAMS);state.settings.custom.forEach(function(c){o[c.id]=c;});return o;}
+function getExam(id){return allExams()[id];}
+
+/* ---------- sample data ---------- */
+function seed(s){
+  var ex=EXAMS.cgl1,R=rng(7),weakBias={'quant:Geometry':-.3,'quant:Trigonometry':-.28,'quant:Data Interpretation':-.2,'ga:Polity':-.25,'ga:Static GK':-.28,'ga:Current Affairs':-.2,'eng:Idioms & Phrases':-.3,'eng:Error Spotting':-.2,'rea:Puzzle & Seating':-.25};
+  var base={rea:.78,ga:.62,quant:.7,eng:.74},offs=[-37,-30,-23,-16,-9,-3];
+  offs.forEach(function(o,i){
+    var dStr=addDays(today(),o);
+    var t={id:uid(),sample:1,date:dStr,exam:'cgl1',name:'Example mock '+(i+1),source:'Testbook (Sample)',diff:i%3===0?'hard':i%2===0?'moderate':'easy',pctile:r1(68+i*4.2),cutoff:136,sectional:false,secs:{},topics:{},mistakes:{concept:0,silly:0,time:0,guess:0},notes:''};
+    ex.secs.forEach(function(sec){
+      var list=TOP[sec.subj],tw=sum(list,function(x){return x[1];}),att=Math.round(sec.q*(.84+i*.02)),c=0,w=0;
+      list.forEach(function(tp){
+        var key=sec.subj+':'+tp[0],a=Math.round(att*tp[1]/tw+(R()-.5)),acc=Math.min(.97,Math.max(.1,base[sec.subj]+i*.03+(weakBias[key]||0)+(R()-.5)*.2));
+        if(a<0)a=0;var cc=Math.round(a*acc),uu=(weakBias[key]&&weakBias[key]<=-.25)?1:0;t.topics[key]={c:cc,w:a-cc,u:uu};c+=cc;w+=a-cc;
+      });
+      if(c+w>sec.q){var ex2=c+w-sec.q;while(ex2>0&&w>0){w--;ex2--;}}
+      t.secs[sec.k]={c:c,w:w,t:Math.round(sec.q*(.5+R()*.2)*(1.15-i*.03)*(ex.dur/100)*1.6)};
+    });
+    t.mistakes={concept:8-i,silly:4+(i%2),time:3,guess:2};
+    s.tests.push(t);
+    s.activity[dStr]=1;
+  });
+  s.errors.push({id:uid(),sample:1,date:addDays(today(),-3),topic:'quant:Geometry',q:'Example: circle with two tangents, find angle between them',why:'concept',fix:'Angle between tangents = 180 - central angle. Draw radius to the touch points first.',streak:0,mastered:false});
+  s.errors.push({id:uid(),sample:1,date:addDays(today(),-2),topic:'eng:Idioms & Phrases',q:'Example: "bite the bullet" marked as "to start a fight"',why:'concept',fix:'Bite the bullet = endure a painful thing bravely. Add to idiom sheet.',streak:0,mastered:false});
+  s.challenges.push({id:uid(),sample:1,title:'Weekly Target: 10 Mocks Sprint',start:addDays(today(),-3),end:addDays(today(),3),target:10,scope:'all',exam:'all'});
+}
+
+/* ---------- calculations ---------- */
+function secCalc(sec,d){
+  d=d||{};var c=+d.c||0,w=+d.w||0,t=+d.t||0,att=c+w;
+  return {c:c,w:w,t:t,att:att,un:Math.max(0,sec.q-att),score:r2(c*sec.m-w*sec.neg),max:sec.q*sec.m,acc:att?c/att:0,rate:att/sec.q,tpq:att?t/att:0,loss:r2(w*sec.neg)};
+}
+function testCalc(t){
+  var ex=getExam(t.exam);if(!ex)return null;
+  var secs=ex.secs.map(function(s){var c=secCalc(s,t.secs[s.k]);c.s=s;return c;});
+  var meritSecs=secs.filter(function(x){return !x.s.qual;});
+  var qualSecs=secs.filter(function(x){return x.s.qual;});
+  if(t.sectional){
+    var activeSecs=secs.filter(function(x){return x.att>0||x.t>0;});
+    if(activeSecs.length)meritSecs=activeSecs;
+  }
+  var score=r2(sum(meritSecs,function(x){return x.score;})),max=sum(meritSecs,function(x){return x.max;});
+  var att=sum(meritSecs,function(x){return x.att;}),c=sum(meritSecs,function(x){return x.c;}),w=sum(meritSecs,function(x){return x.w;});
+  var qScore=r2(sum(qualSecs,function(x){return x.score;})),qMax=sum(qualSecs,function(x){return x.max;});
+  return {
+    ex:ex,secs:secs,meritSecs:meritSecs,qualSecs:qualSecs,
+    score:score,max:max,pct:max?score/max*100:0,
+    qScore:qScore,qMax:qMax,qPct:qMax?qScore/qMax*100:0,
+    att:att,c:c,w:w,acc:att?c/att:0,
+    time:sum(secs,function(x){return x.t;}),
+    loss:r2(sum(meritSecs,function(x){return x.loss;}))
+  };
+}
+function sortedTests(f){
+  return state.tests.map(function(t,idx){return {t:t,idx:idx};})
+    .filter(function(o){return getExam(o.t.exam)&&(!f||f(o.t));})
+    .sort(function(a,b){
+      if(a.t.date!==b.t.date)return a.t.date<b.t.date?-1:1;
+      return a.idx-b.idx;
+    })
+    .map(function(o){return o.t;});
+}
+function prevTestFor(t){
+  var list=sortedTests(function(x){return x.exam===t.exam&&!x.sectional;});
+  var i=list.findIndex(function(x){return x.id===t.id;});
+  return i>0?list[i-1]:null;
+}
+function tkey(subj,name){return subj+':'+name;}
+function tname(k){var i=k.indexOf(':');return k.slice(i+1);}
+function tsubj(k){return k.slice(0,k.indexOf(':'));}
+function rank(){
+  var a={};Object.keys(TOP).forEach(function(sj){TOP[sj].forEach(function(t){var k=tkey(sj,t[0]);a[k]={key:k,subj:sj,name:t[0],wt:t[1],rc:0,rw:0,ru:0,wc:0,ww:0,wu:0,last:''};});});
+  var withT=sortedTests().filter(function(t){return t.topics&&Object.keys(t.topics).length;}).reverse();
+  withT.forEach(function(t,i){var f=Math.pow(.85,i);Object.keys(t.topics).forEach(function(k){var o=a[k];if(!o)return;var c=t.topics[k].c|0,w=t.topics[k].w|0,u=t.topics[k].u|0;o.rc+=c;o.rw+=w;o.ru+=u;o.wc+=f*c;o.ww+=f*w;o.wu+=f*u;if(c+w+u>0&&t.date>o.last)o.last=t.date;});});
+  return Object.keys(a).map(function(k){
+    var o=a[k],att=o.rc+o.rw,tot=att+o.ru,wat=o.wc+o.ww,wtot=wat+o.wu;
+    var acc=wat?o.wc/wat:0,skipRate=wtot?o.wu/wtot:0;
+    var effAcc=wtot?(o.wc+1)/(wtot+2):0;
+    o.att=att;o.tot=tot;o.acc=acc;o.skipRate=skipRate;
+    o.status=tot<3?'nodata':(att===0&&o.ru>=3)?'red':(acc<.5||skipRate>=.5)?'red':(acc<.75||skipRate>=.3)?'amber':'green';
+    o.pri=(1-effAcc)*(.5+o.wt/3)*(1+Math.log(1+o.ww+o.wu*0.8));return o;
+  });
+}
+function subjStats(examId){
+  var m={};
+  sortedTests(function(t){return !examId||t.exam===examId;}).forEach(function(t){
+    var c=testCalc(t);
+    c.secs.forEach(function(s){
+      if(s.s.qual)return;
+      var o=m[s.s.subj]||(m[s.s.subj]={c:0,w:0});
+      o.c+=s.c;o.w+=s.w;
+    });
+  });
+  return Object.keys(m).map(function(k){var o=m[k],att=o.c+o.w;return {subj:k,acc:att?o.c/att:0,att:att};})
+    .filter(function(x){return x.att>0;}).sort(function(a,b){return a.acc-b.acc;});
+}
+function dueRevs(){
+  var t=today();
+  return Object.keys(state.rev).map(function(k){
+    var v=state.rev[k];
+    return {k:k,n:v.n,last:v.last,due:addDays(v.last,INT[Math.min(v.n-1,INT.length-1)])};
+  }).filter(function(x){return x.due<=t;}).sort(function(a,b){return a.due<b.due?-1:1;});
+}
+function pendingErrors(){return state.errors.filter(function(e){return !e.mastered;});}
+
+/* ---------- Challenge Progress Helper ---------- */
+function chalStats(ch){
+  var matched=sortedTests(function(t){
+    if(t.date<ch.start||t.date>ch.end)return false;
+    if(ch.scope==='full'&&t.sectional)return false;
+    if(ch.scope==='sect'&&!t.sectional)return false;
+    if(ch.exam&&ch.exam!=='all'&&t.exam!==ch.exam)return false;
+    return true;
+  });
+  var done=matched.length,pct=Math.min(100,Math.round(done/Math.max(1,ch.target)*100));
+  var t0=today(),remDays=dayDiff(t0,ch.end)+1;
+  var active=t0>=ch.start&&t0<=ch.end;
+  var completed=done>=ch.target;
+  var expired=t0>ch.end&&!completed;
+  var remMocks=Math.max(0,ch.target-done);
+  var pace=remDays>0?r1(remMocks/remDays):remMocks;
+  return {done:done,pct:pct,remDays:remDays,active:active,completed:completed,expired:expired,remMocks:remMocks,pace:pace,matched:matched};
+}
+
+/* ---------- Expected Score Predictor ---------- */
+function scorePredictor(examId){
+  var ts=sortedTests(function(t){return t.exam===examId&&!t.sectional;}).slice(-5);
+  if(ts.length<2)return null;
+  var calcs=ts.map(testCalc);
+  var scores=calcs.map(function(c){return c.score;});
+  var mean=sum(scores,function(x){return x;})/scores.length;
+  var variance=sum(scores,function(x){return Math.pow(x-mean,2);})/scores.length;
+  var sd=Math.sqrt(variance);
+  var max=calcs[calcs.length-1].max;
+  var lo=Math.max(0,r1(mean-Math.max(2,sd*0.8)));
+  var hi=Math.min(max,r1(mean+Math.max(3,sd*0.9)));
+  return {lo:lo,hi:hi,max:max,mean:r1(mean),count:ts.length};
+}
+
+/* ---------- Built-in Countdown Timer ---------- */
+var timer={rem:900,total:900,running:false,iv:null,done:false};
+function fmtTimer(sec){var m=Math.floor(sec/60),s=sec%60;return pad(m)+':'+pad(s);}
+function beep(){
+  try{
+    var ctx=new (window.AudioContext||window.webkitAudioContext)();
+    [0,0.25,0.5].forEach(function(delay){
+      var osc=ctx.createOscillator(),gain=ctx.createGain();
+      osc.type='sine';osc.frequency.value=880;
+      gain.gain.setValueAtTime(0.18,ctx.currentTime+delay);
+      gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+delay+0.2);
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.start(ctx.currentTime+delay);osc.stop(ctx.currentTime+delay+0.22);
+    });
+  }catch(e){}
+}
+function updateTimerUI(){
+  var box=document.getElementById('top-timer');if(!box)return;
+  box.className='timer-pill'+(timer.running?' running':'')+(timer.done?' done':'');
+  var disp=document.getElementById('t-disp');if(disp)disp.textContent=fmtTimer(timer.rem);
+  var btn=document.getElementById('t-toggle');if(btn)btn.textContent=timer.running?'Pause':'Start';
+}
+function toggleTimer(){
+  if(timer.running){
+    clearInterval(timer.iv);timer.running=false;
+  }else{
+    if(timer.rem<=0)timer.rem=timer.total;
+    timer.done=false;timer.running=true;
+    timer.iv=setInterval(function(){
+      timer.rem--;
+      if(timer.rem<=0){
+        timer.rem=0;timer.running=false;timer.done=true;
+        clearInterval(timer.iv);beep();toast('⏱️ Time is up!');
+      }
+      updateTimerUI();
+    },1000);
+  }
+  updateTimerUI();
+}
+function setTimerMin(m){
+  clearInterval(timer.iv);timer.running=false;timer.done=false;
+  timer.total=Math.max(1,m)*60;timer.rem=timer.total;
+  updateTimerUI();
+}
+
+/* ---------- insights ---------- */
+function insights(t,prev){
+  var c=testCalc(t),out=[],ex=c.ex,tgt=+state.settings.target||70;
+  if(prev&&!t.sectional){
+    var pc=testCalc(prev),d=r2(c.score-pc.score);
+    out.push({k:d>=0?'good':'warn',t:'Score is '+(d>=0?'up ':'down ')+Math.abs(d)+' marks compared with '+prev.name+' ('+r1(pc.pct)+'% to '+r1(c.pct)+'%).'});
+  }
+  if(t.cutoff>0&&!t.sectional){
+    var cdif=r2(c.score-t.cutoff);
+    out.push({k:cdif>=0?'good':'bad',t:cdif>=0?'Cutoff cleared by +'+cdif+' marks (Cutoff: '+t.cutoff+').':'Missed cutoff by '+Math.abs(cdif)+' marks (Cutoff: '+t.cutoff+').'});
+  }
+  if(t.pctile>0){
+    out.push({k:t.pctile>=85?'good':t.pctile>=65?'info':'warn',t:'Percentile recorded: '+t.pctile+'%ile'+(t.pctile>=85?' — Safe selection zone!':' — Aim for 85%+ percentile consistently.')});
+  }
+  var gap=r1(c.pct-tgt);
+  out.push({k:gap>=0?'good':'info',t:gap>=0?'You are '+gap+' points above your target of '+tgt+'%.':'You are '+Math.abs(gap)+' points below your target of '+tgt+'%. About '+Math.ceil(Math.abs(gap)/100*c.max)+' more marks are needed.'});
+  if(c.qMax>0){
+    var qPass=c.qPct>=30;
+    out.push({k:qPass?'good':'bad',t:'Qualifying section (Computer): '+c.qScore+'/'+c.qMax+' ('+r1(c.qPct)+'%) — '+(qPass?'Qualified (>=30%).':'Below 30% qualifying cutoff!')});
+  }
+  if(c.loss>0){
+    var avgM=c.meritSecs.length?sum(c.meritSecs,function(x){return x.s.m;})/c.meritSecs.length:ex.secs[0].m;
+    out.push({k:c.loss>=c.max*.06?'warn':'info',t:'Wrong answers cost you '+c.loss+' marks, about '+Math.round(c.loss/avgM)+' correct answers worth.'});
+  }
+  var ideal=ex.dur/sum(ex.secs,function(s){return s.q;});
+  var active=c.secs.filter(function(s){return s.att>0;});
+  var best=active.slice().sort(function(a,b){return b.score/b.max-a.score/a.max;});
+  if(best.length>1){
+    out.push({k:'good',t:'Strongest section: '+best[0].s.n+' ('+r1(best[0].score/best[0].max*100)+'%). Weakest: '+best[best.length-1].s.n+' ('+r1(best[best.length-1].score/best[best.length-1].max*100)+'%).'});
+  }
+  active.forEach(function(s){
+    if(s.att>=5&&s.acc<.65)out.push({k:'bad',t:s.s.n+': accuracy is '+r1(s.acc*100)+'% after attempting '+s.att+'. Skip questions you cannot start within a minute.'});
+    else if(s.rate<.7&&s.acc>=.85&&s.att>0)out.push({k:'info',t:s.s.n+': accuracy is '+r1(s.acc*100)+'% but you attempted only '+s.att+' of '+s.s.q+'. You can safely attempt more.'});
+    if(s.t>0&&s.tpq>ideal*1.3)out.push({k:'warn',t:s.s.n+': '+r1(s.tpq)+' min per attempted question against about '+r1(ideal)+' min available on average.'});
+  });
+  var mm=t.mistakes||{},top=Object.keys(MIST).sort(function(a,b){return (mm[b]|0)-(mm[a]|0);})[0];
+  if(top&&(mm[top]|0)>0)out.push({k:'info',t:MIST_TIP[top]});
+  var negRules={};
+  ex.secs.forEach(function(s){
+    if(s.neg>0){
+      var key=s.m+':'+r2(s.neg);
+      if(!negRules[key])negRules[key]={m:s.m,neg:s.neg,names:[]};
+      negRules[key].names.push(s.n);
+    }
+  });
+  Object.keys(negRules).forEach(function(k){
+    var nr=negRules[k],be=r1(nr.neg/(nr.m+nr.neg)*100);
+    out.push({k:'info',t:'Break-even guess rate ('+nr.names.join(', ')+'): '+be+'% (+'+nr.m+' / -'+r2(nr.neg)+'). Guess only after eliminating at least one option.'});
+  });
+  return out;
+}
+
+/* ---------- charts ---------- */
+function lineChart(pts,target){
+  if(!pts.length)return '<div class="empty">Log a full mock to see your score trend.</div>';
+  var W=640,H=230,L=40,R=22,T=16,B=34,vals=pts.map(function(p){return p.v;}).concat([target]);
+  var lo=Math.max(0,Math.floor((Math.min.apply(null,vals)-8)/10)*10),hi=Math.min(100,Math.ceil((Math.max.apply(null,vals)+5)/10)*10);
+  if(hi-lo<20){hi=Math.min(100,lo+20);lo=hi-20;}
+  var x=function(i){return pts.length===1?L+(W-L-R)/2:L+i*(W-L-R)/(pts.length-1);},y=function(v){v=Math.max(lo,Math.min(hi,v));return T+(hi-v)/(hi-lo)*(H-T-B);};
+  var gid='cg-'+Math.random().toString(36).slice(2,6);
+  var defs='<defs><linearGradient id="'+gid+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--accent)" stop-opacity="0.28"/><stop offset="100%" stop-color="var(--accent)" stop-opacity="0.0"/></linearGradient></defs>';
+  var g='',v;for(v=lo;v<=hi;v+=10)g+='<line class="grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+y(v)+'" y2="'+y(v)+'"/><text x="'+(L-6)+'" y="'+(y(v)+4)+'" text-anchor="end">'+v+'</text>';
+  var d=pts.map(function(p,i){return (i?'L':'M')+x(i)+' '+y(p.v);}).join(' ');
+  var area=pts.length>1?'<path class="ar" style="fill:url(#'+gid+')" d="'+d+' L'+x(pts.length-1)+' '+(H-B)+' L'+x(0)+' '+(H-B)+'Z"/>':'';
+  var step=Math.ceil(pts.length/7),lab='',dots='';
+  var selIdx=state.ui.chartPt!=null&&state.ui.chartPt<pts.length?state.ui.chartPt:pts.length-1;
+  pts.forEach(function(p,i){
+    var last=i===pts.length-1,isSel=i===selIdx;
+    dots+='<circle class="pt'+(last?' last':'')+(isSel?' sel':'')+'" data-act="chartPt" data-idx="'+i+'" cx="'+x(i)+'" cy="'+y(p.v)+'" r="'+(isSel?6:4)+'"><title>'+esc(p.name)+' ('+esc(p.l)+'): '+p.score+'/'+p.max+' ('+r1(p.v)+'%)</title></circle>';
+    if(i%step===0||last)lab+='<text x="'+x(i)+'" y="'+(H-12)+'" text-anchor="middle">'+esc(p.l)+'</text>';
+  });
+  var sp=pts[selIdx]||pts[pts.length-1];
+  return '<svg class="chart" viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Score percentage over time">'+defs+g+
+   '<line class="tg" x1="'+L+'" x2="'+(W-R)+'" y1="'+y(target)+'" y2="'+y(target)+'"/><text class="tgl" x="'+(W-R)+'" y="'+(y(target)-5)+'" text-anchor="end">target '+target+'%</text>'+
+   area+(pts.length>1?'<path class="ln" d="'+d+'"/>':'')+dots+lab+'<text class="lv" x="'+Math.min(Math.max(x(selIdx),L+20),W-R-20)+'" y="'+(y(sp.v)-10)+'" text-anchor="middle">'+r1(sp.v)+'%</text></svg>'+
+   '<div class="chart-tip"><span><b>Selected:</b> <a href="#test-'+esc(sp.id)+'">'+esc(sp.name)+'</a> ('+esc(sp.l)+')</span><span class="num"><b>'+sp.score+'</b>/'+sp.max+' ('+r1(sp.v)+'%) · Tap any dot to inspect</span></div>';
+}
+function bar(label,pct,cls,right){return '<div class="bw"><span>'+esc(label)+'</span><div class="track"><div class="fill '+cls+'" style="width:'+Math.max(0,Math.min(100,pct))+'%"></div></div><span class="num" style="text-align:right">'+right+'</span></div>';}
+function accCls(a){return a>=.75?'good':a>=.5?'warn':'bad';}
+
+/* ---------- icons / nav ---------- */
+var IC={
+  home:'M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z',
+  tests:'M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01',
+  add:'M12 5v14M5 12h14',
+  chal:'M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z',
+  weak:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z',
+  plan:'M4 6h16v14H4zM4 10h16M9 3v6M15 3v6',
+  errors:'M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM9 8h6',
+  more:'M4 7h10M18 7h2M4 17h2M10 17h10M14 5v4M6 15v4'
+};
+var NAV=[
+  ['home','Home',1],
+  ['tests','Tests',1],
+  ['log','Add test',1,'add'],
+  ['chal','Challenges',1],
+  ['weak','Weak topics',0],
+  ['plan','Plan',0],
+  ['errors','Mistakes',1],
+  ['more','Setup & backup',1]
+];
+function icon(n){return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+IC[n==='log'?'add':n]+'"/></svg>';}
+function navHtml(cur){return NAV.map(function(n){return '<a href="#'+n[0]+'" title="'+esc(n[1])+'" class="'+(cur===n[0]?'on':'')+'">'+icon(n[0])+'<span class="nav-txt">'+n[1]+'</span></a>';}).join('');}
+function barHtml(cur){return NAV.filter(function(n){return n[2];}).map(function(n){var add=n[0]==='log';return '<a href="#'+n[0]+'" class="'+(cur===n[0]?'on ':'')+(add?'add':'')+'" aria-label="'+n[1]+'">'+(add?'<span>'+icon(n[0])+'</span>':icon(n[0]))+(add?'Add':n[1].replace(' & backup','').replace('Challenges','Challenge'))+'</a>';}).join('');}
+
+/* ---------- views ---------- */
+function curRoute(){return (location.hash||'#home').slice(1)||'home';}
+function sampleBanner(){return state.tests.some(function(t){return t.sample;})||state.errors.some(function(e){return e.sample;})||state.challenges.some(function(c){return c.sample;})?'<div class="banner"><span><b>Example data is showing.</b> Add your own mocks, then clear the examples.</span><button class="btn sm" data-act="clearSample">Clear examples</button></div>':'';}
+function backupBanner(){
+  var real=state.tests.filter(function(t){return !t.sample;}).length;
+  if(real<5)return '';
+  var stale=!state.settings.lastExport||dayDiff(state.settings.lastExport,today())>=7;
+  if(!stale)return '';
+  return '<div class="banner"><span><b>Backup reminder:</b> You have '+real+' mocks saved locally. Export a backup so browser cleanup never erases them.</span><a class="btn sm" href="#more" style="text-decoration:none">Backup now</a></div>';
+}
+
+function ringSvg(p){var C=263.9,o=C*(1-Math.max(0,Math.min(100,p))/100);return '<svg viewBox="0 0 100 100" aria-hidden="true"><circle class="tr" cx="50" cy="50" r="42" fill="none" stroke-width="9"/><circle class="pg" cx="50" cy="50" r="42" stroke-width="9" stroke-dasharray="'+C+'" stroke-dashoffset="'+o+'"/></svg>';}
+function heroHtml(cx,latest,prev,cd,pred){
+  var tgt=+state.settings.target||70,h=new Date().getHours(),g=h<5?'Late night':h<12?'Good morning':h<17?'Good afternoon':'Good evening',ex=getExam(cx),days=cd!==null&&cd>=0?'<span>'+cd+' days to exam</span>':'';
+  var predPill=pred?'<span>Expected: '+pred.lo+'–'+pred.hi+'/'+pred.max+'</span>':'';
+  if(!latest)return '<section class="hero"><div class="ring">'+ringSvg(0)+'<b>-</b></div><div><div class="eyebrow">'+g+' · '+esc(ex.name)+'</div><h2>Add your first full mock to see where you stand</h2><div class="hm"><span>Target '+tgt+'%</span>'+days+'</div></div></section>';
+  var gap=r1(latest.pct-tgt),dl=prev?r1(latest.pct-prev.pct):null;
+  return '<section class="hero"><div class="ring">'+ringSvg(latest.pct)+'<b>'+Math.round(latest.pct)+'%</b></div><div><div class="eyebrow">'+g+' · '+esc(ex.name)+'</div><h2>'+(gap>=0?'You are '+gap+' points above your target':'You are '+Math.abs(gap)+' points from your target')+'</h2><div class="hm"><span>Target '+tgt+'%</span>'+(dl!==null?'<span>'+(dl>=0?'+':'')+dl+' vs last mock</span>':'')+predPill+days+'</div></div></section>';
+}
+
+function streakCard(){
+  var t0=today(),cells='',activeDays=0;
+  for(var i=13;i>=0;i--){
+    var d=addDays(t0,-i),hit=!!state.activity[d]||state.tests.some(function(x){return x.date===d;});
+    if(hit)activeDays++;
+    var dayNum=d.slice(8);
+    cells+='<div class="sday'+(hit?' hit':'')+(i===0?' tod':'')+'" title="'+fmtD(d)+'">'+dayNum+'</div>';
+  }
+  return '<section class="sec"><header><h3>14-Day Consistency</h3><span class="pill '+(activeDays>=10?'good':activeDays>=5?'warn':'')+'">'+activeDays+'/14 active days</span></header><div class="streak-grid">'+cells+'</div></section>';
+}
+
+function homeChalWidget(){
+  var active=state.challenges.map(function(ch){return {ch:ch,st:chalStats(ch)};}).filter(function(x){return x.st.active||x.st.completed;});
+  if(!active.length)return '';
+  var top=active[0],ch=top.ch,st=top.st;
+  return '<section class="sec"><header><h2>🏆 Active Mock Challenge</h2><a href="#chal" class="small">All challenges</a></header>'+
+    '<div class="chal-card'+(st.completed?' done':'')+'">'+
+    '<div class="row" style="justify-content:space-between"><b>'+esc(ch.title)+'</b><span class="pill '+(st.completed?'good':'acc')+'">'+st.done+' / '+ch.target+' mocks ('+st.pct+'%)</span></div>'+
+    '<div class="track"><div class="fill '+(st.completed?'good':'')+'" style="width:'+st.pct+'%"></div></div>'+
+    '<div class="row muted small" style="justify-content:space-between"><span>'+fmtD(ch.start)+' → '+fmtD(ch.end)+'</span><span>'+(st.completed?'🎉 Challenge Completed!':st.remDays+' day(s) left · Pace: '+st.pace+' mocks/day')+'</span></div>'+
+    '</div></section>';
+}
+
+function vHome(){
+  var s=state.settings,cx=state.ui.chartExam&&getExam(state.ui.chartExam)?state.ui.chartExam:s.exam;
+  var all=sortedTests(),fullTs=sortedTests(function(t){return t.exam===cx&&!t.sectional;}),allExamTs=sortedTests(function(t){return t.exam===cx;});
+  var calc=fullTs.map(testCalc);
+  var last5=calc.slice(-5),avg=last5.length?sum(last5,function(c){return c.pct;})/last5.length:0,best=calc.length?Math.max.apply(null,calc.map(function(c){return c.pct;})):0,latest=calc[calc.length-1];
+  var acc5=last5.length?sum(last5,function(c){return c.c;})/Math.max(1,sum(last5,function(c){return c.att;})):0;
+  var pctiles=fullTs.filter(function(t){return t.pctile>0;}).map(function(t){return t.pctile;});
+  var avgPctile=pctiles.length?r1(sum(pctiles,function(x){return x;})/pctiles.length):null;
+  var cd=s.examDate?dayDiff(today(),s.examDate):null;
+  var pred=scorePredictor(cx);
+  var strip='<div class="strip"><div><b>'+all.length+'</b><span>Tests logged</span></div><div><b>'+(last5.length?r1(avg)+'%':'-')+'</b><span>Avg last 5</span></div><div><b>'+(calc.length?r1(best)+'%':'-')+'</b><span>Best full mock</span></div><div><b>'+(avgPctile!==null?avgPctile+'%ile':(last5.length?r1(acc5*100)+'%':'-'))+'</b><span>'+(avgPctile!==null?'Avg percentile':'Accuracy')+'</span></div></div>';
+  var opts=Object.keys(allExams()).map(function(id){return '<option value="'+id+'"'+(id===cx?' selected':'')+'>'+esc(allExams()[id].name)+'</option>';}).join('');
+  var chartPts=calc.map(function(c,i){return {id:fullTs[i].id,name:fullTs[i].name,score:c.score,max:c.max,v:c.pct,l:fmtD(fullTs[i].date)};});
+  var chart='<section class="sec"><header><h2>Score trend <span class="muted small">(full mocks)</span></h2><select data-chg="chartExam" style="width:auto" aria-label="Exam for chart">'+opts+'</select></header>'+lineChart(chartPts,+s.target||70)+'</section>';
+  var secBars='';
+  if(allExamTs.length){
+    var cex=getExam(cx),recentAll=allExamTs.slice(-8).map(testCalc);
+    secBars=cex.secs.map(function(sec,i){
+      var c=sum(recentAll,function(x){return x.secs[i].c;}),w=sum(recentAll,function(x){return x.secs[i].w;}),a=(c+w)?c/(c+w):0;
+      return bar(sec.n+(sec.qual?' (Qual)':''),a*100,accCls(a),r1(a*100)+'%');
+    }).join('');
+  }
+  var sections='<section class="sec"><header><h2>Section accuracy</h2><span class="muted small">incl. sectionals</span></header>'+(secBars?'<div class="bars">'+secBars+'</div>':'<div class="empty">No data for this exam yet.</div>')+'</section>';
+  var pl=state.plan,todayTasks='';
+  var dayP=pl&&pl.days.filter(function(d){return d.date===today();})[0];
+  if(dayP)todayTasks=dayP.tasks.map(function(t){return taskHtml(t);}).join('');
+  var due=dueRevs().slice(0,4);
+  var todayCard='<section class="sec"><header><h2>Today</h2><div class="row"><a href="#weak" class="small">Weak topics</a><a href="#plan" class="small">Full plan</a></div></header>'+(todayTasks||'<div class="empty">No plan for today. <a href="#plan">Make a revision plan</a></div>')+
+    (due.length?'<div class="lbl">Spaced revision due</div>'+due.map(function(d){return '<div class="item"><div class="t">'+esc(SUBJ[tsubj(d.k)])+': '+esc(tname(d.k))+'<div class="muted small">Last revised '+fmtD(d.last)+'</div></div><button class="btn sm" data-act="revise" data-k="'+esc(d.k)+'">Done</button></div>';}).join(''):'')+'</section>';
+  var weak=rank().filter(function(t){return t.status==='red'||t.status==='amber';}).sort(function(a,b){return b.pri-a.pri;}).slice(0,5);
+  var weakCard='<section class="sec"><header><h2>Fix first</h2><a href="#weak" class="small">All topics</a></header>'+(weak.length?'<div class="bars">'+weak.map(function(t){return bar(t.name,t.acc*100,accCls(t.acc),r1(t.acc*100)+'%');}).join('')+'</div>':'<div class="empty">Enter topic-wise results when you add a test to see your weak topics.</div>')+'</section>';
+  return sampleBanner()+backupBanner()+heroHtml(cx,latest,calc[calc.length-2],cd,pred)+strip+homeChalWidget()+chart+'<div class="grid2">'+sections+weakCard+'</div><div class="grid2">'+todayCard+streakCard()+'</div>';
+}
+
+/* ---------- Mock Challenge View (#chal) ---------- */
+function vChal(){
+  var s=state.settings;
+  var exOpts='<option value="all">All Exams</option>'+Object.keys(allExams()).map(function(id){return '<option value="'+id+'">'+esc(allExams()[id].name)+'</option>';}).join('');
+  var presets=[
+    {title:'Weekly Target: 10 Mocks',days:7,target:10,scope:'all',desc:'10 total mocks (Full + Sectional) in 7 days'},
+    {title:'7-Day Full Mock Sprint',days:7,target:5,scope:'full',desc:'5 full-length mocks in 7 days'},
+    {title:'14-Day Consistency Marathon',days:14,target:12,scope:'all',desc:'12 mocks over 2 weeks'},
+    {title:'30-Day Exam Readiness',days:30,target:25,scope:'full',desc:'25 full mocks in 30 days'}
+  ];
+  var presetHtml='<div class="preset-grid">'+presets.map(function(p,i){
+    return '<button type="button" class="preset-btn" data-act="presetChal" data-idx="'+i+'"><b>'+esc(p.title)+'</b><span class="muted small">'+esc(p.desc)+'</span></button>';
+  }).join('')+'</div>';
+
+  var builder='<section class="sec"><header><h2>🏆 Create a Mock Challenge</h2></header>'+
+    '<div class="muted small">Set a personal mock target for yourself. Every test you log within the challenge window automatically counts toward your progress!</div>'+
+    '<div class="lbl">Quick-Start Presets</div>'+presetHtml+
+    '<div class="lbl" style="margin-top:4px">Or Custom Challenge</div>'+
+    '<div class="fgrid">'+
+      '<div class="field"><label for="ch-title">Challenge Title</label><input type="text" id="ch-title" placeholder="e.g. Weekly Target 10 Mocks"></div>'+
+      '<div class="field"><label for="ch-target">Target Mocks</label><input type="number" id="ch-target" min="1" max="200" value="10"></div>'+
+      '<div class="field"><label for="ch-days">Duration (Days)</label><input type="number" id="ch-days" min="1" max="180" value="7"></div>'+
+      '<div class="field"><label for="ch-scope">Test Type</label><select id="ch-scope"><option value="all">All Mocks (Full + Sectional)</option><option value="full">Full Mocks Only</option><option value="sect">Sectional Mocks Only</option></select></div>'+
+      '<div class="field"><label for="ch-exam">Exam Filter</label><select id="ch-exam">'+exOpts+'</select></div>'+
+    '</div>'+
+    '<div><button type="button" class="btn pri" data-act="addChal">Start Challenge</button></div></section>';
+
+  var listHtml=state.challenges.slice().reverse().map(function(ch){
+    var st=chalStats(ch);
+    var statusBadge=st.completed?'<span class="pill good">✓ Completed</span>':(st.expired?'<span class="pill bad">Expired</span>':'<span class="pill acc">Active · '+st.remDays+'d left</span>');
+    var scopeLbl=ch.scope==='full'?'Full mocks only':ch.scope==='sect'?'Sectional only':'Full + Sectional';
+    var exLbl=ch.exam&&ch.exam!=='all'&&getExam(ch.exam)?getExam(ch.exam).name:'All exams';
+    return '<div class="chal-card'+(st.completed?' done':'')+'">'+
+      '<div class="row" style="justify-content:space-between"><div><b>'+esc(ch.title)+'</b> '+(ch.sample?'<span class="pill">Example</span>':'')+'<div class="muted small">'+fmtD(ch.start)+' → '+fmtD(ch.end)+' · '+scopeLbl+' · '+esc(exLbl)+'</div></div><div class="row">'+statusBadge+'<button class="btn sm bad" data-act="delChal" data-id="'+ch.id+'">Delete</button></div></div>'+
+      '<div class="row" style="justify-content:space-between"><span class="num"><b>'+st.done+'</b> / '+ch.target+' mocks completed</span><span class="num"><b>'+st.pct+'%</b></span></div>'+
+      '<div class="track"><div class="fill '+(st.completed?'good':st.expired?'bad':'')+'" style="width:'+st.pct+'%"></div></div>'+
+      (!st.completed&&!st.expired?'<div class="muted small">Required pace: <b>'+st.pace+' mocks/day</b> ('+st.remMocks+' more needed)</div>':'')+
+    '</div>';
+  }).join('');
+
+  return sampleBanner()+builder+'<section class="sec"><header><h3>Your Challenges</h3></header>'+(listHtml||'<div class="empty">No active challenges yet. Pick a preset or create your own target above!</div>')+'</section>';
+}
+
+function taskHtml(t){return '<label class="chk'+(t.done?' done':'')+'"><input type="checkbox" data-chg="task" data-id="'+t.id+'"'+(t.done?' checked':'')+'><span>'+esc(t.txt)+' <span class="muted small">'+t.min+' min</span></span></label>';}
+
+function vTests(){
+  var ts=sortedTests().reverse();
+  if(!ts.length)return '<section class="sec"><h2>Tests</h2><div class="empty">No tests yet. <a href="#log">Add your first mock</a></div></section>';
+  var rows=ts.map(function(t){
+    var c=testCalc(t),p=prevTestFor(t),pc=p?testCalc(p):null,d=pc&&!t.sectional?r1(c.pct-pc.pct):null;
+    var cf=state.ui.confirm===t.id;
+    var cutBadge=(t.cutoff>0&&!t.sectional)?(c.score>=t.cutoff?'<span class="pill good">Cutoff ✓</span>':'<span class="pill bad">Cutoff ✗</span>'):'';
+    var pctBadge=t.pctile>0?'<span class="pill">'+t.pctile+'%ile</span>':'';
+    return '<div class="item"><div class="t"><a href="#test-'+t.id+'"><b>'+esc(t.name)+'</b></a> '+(t.sample?'<span class="pill">Example</span> ':'')+(t.sectional?'<span class="pill warn">Sectional</span> ':'')+(t.diff?'<span class="pill">'+esc(DIFF[t.diff]||t.diff)+'</span> ':'')+cutBadge+' '+pctBadge+'<div class="muted small">'+esc(c.ex.name)+' · '+fmtD(t.date)+(t.source?' · '+esc(t.source):'')+'</div></div>'+
+      '<div class="num"><b>'+c.score+'</b><span class="muted">/'+c.max+'</span> <span class="pill '+(c.pct>=(+state.settings.target||70)?'good':'')+'">'+r1(c.pct)+'%</span> '+(d!==null?'<span class="pill '+(d>=0?'good':'bad')+'">'+(d>=0?'+':'')+d+'</span>':'')+'</div>'+
+      '<div class="row"><a class="btn sm" href="#test-'+t.id+'" style="text-decoration:none">Analysis</a><a class="btn sm" href="#edit-'+t.id+'" style="text-decoration:none">Edit</a><button class="btn sm bad" data-act="delTest" data-id="'+t.id+'">'+(cf?'Tap to confirm':'Delete')+'</button></div></div>';
+  }).join('');
+  return '<section class="sec"><header><h2>All tests</h2><a class="btn pri sm" href="#log" style="text-decoration:none">Add test</a></header><div class="list">'+rows+'</div></section>';
+}
+
+function vTest(id){
+  var t=state.tests.filter(function(x){return x.id===id;})[0];
+  if(!t||!getExam(t.exam))return '<section class="sec"><h2>Test not found</h2><a href="#tests">Back to tests</a></section>';
+  var c=testCalc(t),prev=prevTestFor(t);
+  var ex=c.ex,rows=c.secs.map(function(s){
+    return '<tr><td>'+esc(s.s.n)+(s.s.qual?' <span class="pill">Qualifying</span>':'')+'</td><td class="r num">'+s.att+'/'+s.s.q+'</td><td class="r num">'+s.c+'</td><td class="r num">'+s.w+'</td><td class="r num">'+s.un+'</td><td class="r num"><b>'+s.score+'</b>/'+s.max+'</td><td class="r num">'+r1(s.acc*100)+'%</td><td class="r num">'+(s.t?r1(s.tpq)+' min':'-')+'</td></tr>';
+  }).join('');
+  var mm=t.mistakes||{},mt=sum(Object.keys(MIST),function(k){return mm[k]|0;});
+  var mist=mt?Object.keys(MIST).map(function(k){return bar(MIST[k],(mm[k]|0)/mt*100,k==='concept'?'bad':k==='silly'?'warn':'',(mm[k]|0));}).join(''):'';
+  var tp=[];Object.keys(t.topics||{}).forEach(function(k){var o=t.topics[k],a=(o.c|0)+(o.w|0),u=o.u|0,tot=a+u;if(tot>0)tp.push({k:k,a:a,u:u,tot:tot,eff:(o.c|0)/tot,w:o.w|0});});
+  tp.sort(function(a,b){return a.eff-b.eff||(b.w+b.u)-(a.w+a.u);});
+  var topHtml=tp.length?tp.slice(0,8).map(function(x){var tag=(x.w?x.w+'W ':'')+(x.u?x.u+'L':'');return bar(SUBJ[tsubj(x.k)]+': '+tname(x.k),x.eff*100,accCls(x.eff),tag.trim()||'0 err');}).join(''):'';
+  var qualBox=c.qMax>0?'<div><b>'+c.qScore+'/'+c.qMax+'</b><span>Computer ('+(c.qPct>=30?'Pass':'Fail')+')</span></div>':'';
+  var pctBox=t.pctile>0?'<div><b>'+t.pctile+'%</b><span>Percentile</span></div>':'';
+  var cutBox=(t.cutoff>0&&!t.sectional)?'<div><b>'+t.cutoff+'</b><span>Cutoff ('+(c.score>=t.cutoff?'Cleared':'Missed')+')</span></div>':'';
+  return '<section class="sec"><header><div><h2>'+esc(t.name)+' '+(t.sectional?'<span class="pill warn">Sectional</span> ':'')+(t.diff?'<span class="pill">'+esc(DIFF[t.diff]||t.diff)+'</span>':'')+'</h2><div class="muted small">'+esc(ex.name)+' · '+fmtD(t.date)+(t.source?' · '+esc(t.source):'')+(t.sample?' · Example':'')+'</div></div><div class="row no-print"><button type="button" class="btn sm" onclick="window.print()">Print / PDF</button><a class="btn sm" href="#edit-'+t.id+'" style="text-decoration:none">Edit</a><a href="#tests" class="small">All tests</a></div></header>'+
+   '<div class="strip"><div><b>'+c.score+'</b><span>Merit of '+c.max+'</span></div><div><b>'+r1(c.pct)+'%</b><span>Score</span></div><div><b>'+r1(c.acc*100)+'%</b><span>Accuracy</span></div>'+pctBox+cutBox+qualBox+'<div><b>-'+c.loss+'</b><span>Negative marks</span></div></div></section>'+
+   '<section class="sec"><h2>Section breakdown</h2><div class="scroll"><table><thead><tr><th>Section</th><th class="r">Attempted</th><th class="r">Right</th><th class="r">Wrong</th><th class="r">Left</th><th class="r">Score</th><th class="r">Accuracy</th><th class="r">Time/Q</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>'+
+   '<section class="sec"><h2>What to change</h2>'+insights(t,prev).map(function(i){return '<div class="ins '+i.k+'">'+esc(i.t)+'</div>';}).join('')+'</section>'+
+   ((mist||topHtml)?'<div class="grid2">'+(mist?'<section class="sec"><h3>Why marks were lost</h3><div class="bars">'+mist+'</div></section>':'')+(topHtml?'<section class="sec"><h3>Weakest topics in this test</h3><div class="bars">'+topHtml+'</div></section>':'')+'</div>':'')+
+   aiTestBox(t)+(t.notes?'<section class="sec"><h3>Notes</h3><div>'+esc(t.notes)+'</div></section>':'');
+}
+
+function vLog(editId){
+  var editT=editId?state.tests.filter(function(x){return x.id===editId;})[0]:null;
+  var s=state.settings;
+  var exId=editT?editT.exam:(state.ui.logExam&&getExam(state.ui.logExam)?state.ui.logExam:s.exam);
+  var ex=getExam(exId),n=state.tests.length+1;
+  var opts=Object.keys(allExams()).map(function(id){return '<option value="'+id+'"'+(id===exId?' selected':'')+'>'+esc(allExams()[id].name)+'</option>';}).join('');
+  var diffVal=editT&&editT.diff?editT.diff:'moderate';
+  var diffOpts=Object.keys(DIFF).map(function(k){return '<option value="'+k+'"'+(k===diffVal?' selected':'')+'>'+DIFF[k]+'</option>';}).join('');
+  var secs=ex.secs.map(function(sec){
+    var sv=editT&&editT.secs&&editT.secs[sec.k]?editT.secs[sec.k]:{};
+    var tops=TOP[sec.subj].map(function(tp,i){
+      var tk=tkey(sec.subj,tp[0]),tv=editT&&editT.topics&&editT.topics[tk]?editT.topics[tk]:{};
+      return '<span>'+esc(tp[0])+'</span>'+
+        '<input type="number" min="0" inputmode="numeric" id="t-'+sec.k+'-'+i+'-c" data-sk="'+sec.k+'" data-key="'+esc(tk)+'" data-f="c" value="'+(tv.c||'')+'" aria-label="'+esc(tp[0])+' correct">'+
+        '<input type="number" min="0" inputmode="numeric" id="t-'+sec.k+'-'+i+'-w" data-sk="'+sec.k+'" data-key="'+esc(tk)+'" data-f="w" value="'+(tv.w||'')+'" aria-label="'+esc(tp[0])+' wrong">'+
+        '<input type="number" min="0" inputmode="numeric" id="t-'+sec.k+'-'+i+'-u" data-sk="'+sec.k+'" data-key="'+esc(tk)+'" data-f="u" value="'+(tv.u||'')+'" aria-label="'+esc(tp[0])+' unattempted">';
+    }).join('');
+    var hasTopicData=editT&&editT.topics&&Object.keys(editT.topics).some(function(k){return k.indexOf(sec.subj+':')===0&&(editT.topics[k].c||editT.topics[k].w||editT.topics[k].u);});
+    return '<div class="secbox" data-sec="'+sec.k+'"><div class="hd"><b>'+esc(sec.n)+(sec.qual?' <span class="pill">Qualifying</span>':'')+'</b><span class="muted small">'+sec.q+' questions · +'+r2(sec.m)+' / -'+r2(sec.neg)+'</span></div>'+
+     '<div class="sgrid"><div class="field"><label for="s-'+sec.k+'-c">Correct</label><input type="number" min="0" max="'+sec.q+'" inputmode="numeric" id="s-'+sec.k+'-c" value="'+(sv.c||'')+'"></div><div class="field"><label for="s-'+sec.k+'-w">Wrong</label><input type="number" min="0" max="'+sec.q+'" inputmode="numeric" id="s-'+sec.k+'-w" value="'+(sv.w||'')+'"></div><div class="field"><label for="s-'+sec.k+'-t">Minutes</label><input type="number" min="0" inputmode="numeric" id="s-'+sec.k+'-t" value="'+(sv.t||'')+'"></div></div>'+
+     '<div class="muted small" id="sl-'+sec.k+'"></div><details'+(hasTopicData?' open':'')+'><summary>Topic-wise results (Right, Wrong & Unattempted)</summary><div class="tgrid"><span class="h">Topic</span><span class="h">Right</span><span class="h">Wrong</span><span class="h">Left</span>'+tops+'</div></details></div>';
+  }).join('');
+  var mist=Object.keys(MIST).map(function(k){
+    var mv=editT&&editT.mistakes&&editT.mistakes[k]?editT.mistakes[k]:'';
+    return '<div class="field"><label for="m-'+k+'">'+MIST[k]+'</label><input type="number" min="0" inputmode="numeric" id="m-'+k+'" value="'+mv+'"></div>';
+  }).join('');
+  var afBox='<details class="autofill-box"><summary>⚡ Auto-fill from Testbook / Answer Key (Paste text or upload screenshot)</summary><div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">'+
+    '<div class="muted small">Copy your Testbook Analysis page OR Official Answer Key response sheet text (Ctrl+A, Ctrl+C) and paste below, OR upload scorecard screenshots. Gemini AI will fill all section, percentile, cutoff & topic fields automatically.</div>'+
+    '<textarea id="af-text" placeholder="Paste Testbook scorecard or SSC/RRB answer key summary text here..."></textarea>'+
+    '<div class="row"><label class="btn sm" style="cursor:pointer">📷 Upload Screenshot<input type="file" id="af-img" accept="image/*" hidden></label><span id="af-img-name" class="muted small"></span><button type="button" class="btn pri sm" data-act="aiParseScore">'+(state.ui.busy==='parse'?'Reading scorecard...':'Auto-fill form')+'</button></div>'+
+    '</div></details>';
+  return '<form id="logform" autocomplete="off"><input type="hidden" id="f-edit-id" value="'+esc(editT?editT.id:'')+'">'+
+   '<section class="sec"><header><h2>'+(editT?'Edit mock test':'Add a mock test')+'</h2>'+(ex.ok?'<span class="pill good">Pattern verified Nov 2026</span>':'<span class="pill warn">Confirm pattern in notification</span>')+'</header>'+
+   afBox+
+   '<div class="fgrid"><div class="field"><label for="f-exam">Exam</label><select id="f-exam" data-chg="logExam" '+(editT?'disabled':'')+'>'+opts+'</select></div><div class="field"><label for="f-name">Test name</label><input type="text" id="f-name" value="'+esc(editT?editT.name:'Mock '+n)+'"></div><div class="field"><label for="f-date">Date</label><input type="date" id="f-date" value="'+esc(editT?editT.date:today())+'"></div><div class="field"><label for="f-src">Source</label><input type="text" id="f-src" value="'+esc(editT?editT.source:'')+'" placeholder="Testbook, Oliveboard, PYQ..."></div><div class="field"><label for="f-diff">Difficulty</label><select id="f-diff">'+diffOpts+'</select></div><div class="field"><label for="f-pctile">Percentile % (opt)</label><input type="number" min="0" max="100" step="0.01" id="f-pctile" value="'+(editT&&editT.pctile?editT.pctile:'')+'" placeholder="e.g. 88.5"></div><div class="field"><label for="f-cutoff">Cutoff Marks (opt)</label><input type="number" min="0" step="0.5" id="f-cutoff" value="'+(editT&&editT.cutoff?editT.cutoff:'')+'" placeholder="e.g. 138"></div></div>'+
+   '<label class="toggle-row"><input type="checkbox" id="f-sect"'+(editT&&editT.sectional?' checked':'')+'><span>Sectional test only <span class="muted small">(updates weak topics & section accuracy without affecting full-mock trend)</span></span></label></section>'+
+   '<section class="sec"><h3>Section results</h3>'+secs+'</section>'+
+   '<section class="sec"><h3>Where did you lose marks?</h3><div class="muted small">Number of wrong or skipped questions by cause</div><div class="fgrid">'+mist+'</div><div class="field"><label for="f-notes">Notes</label><textarea id="f-notes" placeholder="Paper felt hard in Quant, ran out of time in GA...">'+esc(editT?editT.notes:'')+'</textarea></div></section>'+
+   '<div class="live"><span class="num" id="liveTxt">Score 0 / '+sum(ex.secs.filter(function(x){return !x.qual;}),function(s){return s.q*s.m;})+'</span><div class="row">'+(editT?'<a class="btn sm" href="#test-'+editT.id+'" style="text-decoration:none;color:var(--ink)">Cancel</a>':'')+'<button type="button" class="btn pri" data-act="saveTest">'+(editT?'Update test':'Save test')+'</button></div></div></form>';
+}
+
+function vWeak(){
+  var f=state.ui.weakF||'all',r=rank(),subs=Object.keys(TOP);
+  var chips='<div class="chips"><button class="chip'+(f==='all'?' on':'')+'" data-act="weakF" data-f="all">All</button>'+subs.map(function(sj){return '<button class="chip'+(f===sj?' on':'')+'" data-act="weakF" data-f="'+sj+'">'+SUBJ[sj]+'</button>';}).join('')+'</div>';
+  var list=r.filter(function(t){return f==='all'||t.subj===f;});
+  var tested=list.filter(function(t){return t.status!=='nodata';}).sort(function(a,b){return b.pri-a.pri;}),untested=list.filter(function(t){return t.status==='nodata';}).sort(function(a,b){return b.wt-a.wt;});
+  var cnt={red:0,amber:0,green:0};r.forEach(function(t){if(cnt[t.status]!=null)cnt[t.status]++;});
+  var lab={red:'Weak',amber:'Improve',green:'Strong'},cls={red:'bad',amber:'warn',green:'good'};
+  var rows=tested.map(function(t){
+    var rv=state.rev[t.key];
+    var skipBadge=t.skipRate>=.3?' <span class="pill warn">'+Math.round(t.skipRate*100)+'% skipped</span>':'';
+    var pctDisp=t.att?r1(t.acc*100)+'% acc':'0% att';
+    return '<div class="item"><div class="t"><b>'+esc(t.name)+'</b> <span class="pill '+cls[t.status]+'">'+lab[t.status]+'</span>'+skipBadge+'<div class="muted small">'+SUBJ[t.subj]+' · weight '+'●'.repeat(t.wt)+'○'.repeat(3-t.wt)+' · '+t.rc+'R / '+t.rw+'W / '+t.ru+'L'+(rv?' · revised '+rv.n+'x, last '+fmtD(rv.last):'')+'</div><div class="track" style="margin-top:6px"><div class="fill '+cls[t.status]+'" style="width:'+Math.round((t.att?t.acc:0)*100)+'%"></div></div></div><div class="row"><span class="num"><b>'+pctDisp+'</b></span><button class="btn sm" data-act="revise" data-k="'+esc(t.key)+'">Mark revised</button></div></div>';
+  }).join('');
+  var un=untested.length?'<details><summary>Not tested yet ('+untested.length+')</summary><div class="list">'+untested.map(function(t){return '<div class="item"><div class="t">'+esc(t.name)+' <span class="muted small">'+SUBJ[t.subj]+' · weight '+'●'.repeat(t.wt)+'○'.repeat(3-t.wt)+'</span></div></div>';}).join('')+'</div></details>':'';
+  return sampleBanner()+'<section class="sec"><header><h2>Weak topics</h2><div class="row"><span class="pill bad">'+cnt.red+' weak</span><span class="pill warn">'+cnt.amber+' improve</span><span class="pill good">'+cnt.green+' strong</span></div></header><div class="muted small">Ranked by accuracy, how often the topic appears in papers, and how many marks you lost. Recent mocks count more than old ones.</div>'+chips+(rows?'<div class="list">'+rows+'</div>':'<div class="empty">No topic-wise results in this filter yet.</div>')+un+'</section>';
+}
+
+function vPlan(){
+  var s=state.settings,pl=state.plan,due=dueRevs();
+  var hasMissed=pl&&pl.days.some(function(d){return d.date<today()&&d.tasks.some(function(t){return !t.done;});});
+  var ctl='<section class="sec"><header><h2>Revision plan</h2>'+(hasMissed?'<button class="btn sm" data-act="shiftMissed">Shift missed tasks to today</button>':'')+'</header><div class="muted small">Built from your weak topics for '+esc((getExam(s.exam)||EXAMS.cgl1).name)+', then spaced recall at day 1, 3, 7 and 14, a sectional test weekly and a full mock at the end.</div><div class="fgrid"><div class="field"><label for="p-days">Plan length</label><select id="p-days"><option value="7">7 days</option><option value="14" selected>14 days</option><option value="30">30 days</option></select></div><div class="field"><label for="p-hours">Study hours per day</label><input type="number" id="p-hours" min="1" max="12" step="0.5" value="'+esc(s.hours)+'"></div><div class="field"><label>&nbsp;</label><button class="btn pri" data-act="genPlan">'+(pl?'Rebuild plan':'Build my plan')+'</button></div></div>'+(state.ui.planMsg?'<div class="ins warn">'+esc(state.ui.planMsg)+'</div>':'')+'</section>';
+  var dueH=due.length?'<section class="sec"><h3>Spaced revision due now</h3>'+due.map(function(d){return '<div class="item"><div class="t">'+esc(SUBJ[tsubj(d.k)])+': '+esc(tname(d.k))+'<div class="muted small">Revised '+d.n+'x, last on '+fmtD(d.last)+'</div></div><button class="btn sm" data-act="revise" data-k="'+esc(d.k)+'">Done</button></div>';}).join('')+'</section>':'';
+  if(!pl)return ctl+dueH;
+  var all=sum(pl.days,function(d){return d.tasks.length;}),done=sum(pl.days,function(d){return d.tasks.filter(function(t){return t.done;}).length;}),t0=today();
+  var days=pl.days.map(function(d,i){
+    var dn=d.tasks.filter(function(t){return t.done;}).length,isT=d.date===t0,past=d.date<t0&&dn<d.tasks.length;
+    return '<details'+(isT||(!i&&d.date>t0)?' open':'')+'><summary>Day '+(i+1)+' · '+fmtDW(d.date)+(isT?' · today':'')+' · '+dn+'/'+d.tasks.length+' done'+(past?' · missed':'')+'</summary><div>'+d.tasks.map(taskHtml).join('')+'</div></details>';
+  }).join('');
+  return ctl+dueH+'<section class="sec"><header><h3>Progress</h3><span class="num">'+done+'/'+all+' tasks</span></header><div class="track"><div class="fill good" style="width:'+(all?Math.round(done/all*100):0)+'%"></div></div><div class="muted small">'+esc(pl.note||'')+'</div>'+days+'</section>';
+}
+
+function vErrors(){
+  var f=state.ui.errF||'pending',sf=state.ui.errSubj||'all',q=(state.ui.errQ||'').toLowerCase().trim(),quizMode=!!state.ui.quizMode;
+  var list=state.errors.filter(function(e){
+    if(f==='pending'&&e.mastered)return false;
+    if(f==='mastered'&&!e.mastered)return false;
+    if(sf!=='all'&&tsubj(e.topic)!==sf)return false;
+    if(q){
+      var hay=(e.q+' '+(e.fix||'')+' '+tname(e.topic)).toLowerCase();
+      if(hay.indexOf(q)<0)return false;
+    }
+    return true;
+  }).sort(function(a,b){return a.date<b.date?1:-1;});
+
+  var topicOpts=Object.keys(TOP).map(function(sj){return '<optgroup label="'+SUBJ_FULL[sj]+'">'+TOP[sj].map(function(t){return '<option value="'+esc(tkey(sj,t[0]))+'">'+esc(t[0])+'</option>';}).join('')+'</optgroup>';}).join('');
+  var form='<section class="sec no-print"><header><h2>Mistake notebook</h2><button type="button" class="btn sm" onclick="window.print()">Print / PDF</button></header><div class="fgrid"><div class="field"><label for="e-topic">Topic</label><select id="e-topic">'+topicOpts+'</select></div><div class="field"><label for="e-why">Why it went wrong</label><select id="e-why">'+Object.keys(MIST).map(function(k){return '<option value="'+k+'">'+MIST[k]+'</option>';}).join('')+'</select></div></div><div class="field"><label for="e-q">Question (short note)</label><textarea id="e-q" placeholder="What was asked?"></textarea></div><div class="field"><label for="e-fix">Correct method or shortcut</label><textarea id="e-fix" placeholder="How to solve it next time"></textarea></div><div><button class="btn pri" data-act="addErr">Save mistake</button></div></section>';
+
+  var quizPool=pendingErrors();
+  var quizHtml='';
+  if(quizMode){
+    if(!quizPool.length){
+      quizHtml='<div class="empty">🎉 All mistakes mastered! Switch back to List View or add more questions above.</div>';
+    }else{
+      var qIdx=(state.ui.quizIdx||0)%quizPool.length;
+      var curE=quizPool[qIdx],rev=!!state.ui.quizRev;
+      quizHtml='<div class="flashcard">'+
+        '<div class="row" style="justify-content:space-between"><span class="pill acc">Card '+(qIdx+1)+' of '+quizPool.length+'</span><span class="pill">'+esc(SUBJ[tsubj(curE.topic)]||'')+': '+esc(tname(curE.topic))+'</span><span class="pill">'+(curE.streak||0)+'/2 streak to master</span></div>'+
+        '<div class="flash-q">'+esc(curE.q)+'</div>'+
+        (rev?'<div class="flash-ans"><b>Method / Shortcut:</b><div style="margin-top:4px">'+esc(curE.fix||'No method noted.')+'</div></div>'+
+          '<div class="row"><button type="button" class="btn good" data-act="quizPass" data-id="'+curE.id+'">✓ Solved Correctly (+1 Streak)</button><button type="button" class="btn bad" data-act="quizFail" data-id="'+curE.id+'">✗ Got Stuck (Reset Streak)</button></div>'
+        :'<div><button type="button" class="btn pri" data-act="quizReveal">Reveal Method</button></div>')+
+      '</div>';
+    }
+  }
+
+  var chips='<div class="row" style="justify-content:space-between"><div class="chips"><button class="chip'+(f==='pending'?' on':'')+'" data-act="errF" data-f="pending">To review ('+pendingErrors().length+')</button><button class="chip'+(f==='mastered'?' on':'')+'" data-act="errF" data-f="mastered">Mastered</button><button class="chip'+(f==='all'?' on':'')+'" data-act="errF" data-f="all">All</button></div><button type="button" class="btn sm '+(quizMode?'pri':'')+'" data-act="toggleQuiz">'+(quizMode?'Exit Flashcard Quiz':'⚡ Flashcard Re-attempt Quiz')+'</button></div>';
+  var subjChips='<div class="chips"><button class="chip'+(sf==='all'?' on':'')+'" data-act="errSubj" data-f="all">All subjects</button>'+Object.keys(SUBJ).map(function(sj){return '<button class="chip'+(sf===sj?' on':'')+'" data-act="errSubj" data-f="'+sj+'">'+SUBJ[sj]+'</button>';}).join('')+'</div>';
+  var searchBox='<input type="search" id="err-search" placeholder="Search question, topic, or shortcut..." value="'+esc(state.ui.errQ||'')+'">';
+  var rows=list.map(function(e){return '<div class="item"><div class="t"><b>'+esc(SUBJ[tsubj(e.topic)]||'')+': '+esc(tname(e.topic))+'</b> <span class="pill">'+esc(MIST[e.why]||'')+'</span>'+(e.streak?' <span class="pill good">'+e.streak+'/2 streak</span>':'')+(e.sample?' <span class="pill">Example</span>':'')+'<div>'+esc(e.q)+'</div><details><summary>Show method</summary><div>'+esc(e.fix||'No method noted.')+'</div></details>'+aiErrBox(e)+'<div class="muted small">'+fmtD(e.date)+'</div></div><div class="row no-print"><button class="btn sm" data-act="mast" data-id="'+e.id+'">'+(e.mastered?'Move back':'Mastered')+'</button><button class="btn sm bad" data-act="delErr" data-id="'+e.id+'">Delete</button></div></div>';}).join('');
+
+  return form+'<section class="sec"><header><h3>Saved mistakes</h3></header>'+chips+(quizMode?quizHtml:(subjChips+searchBox+(rows?'<div class="list">'+rows+'</div>':'<div class="empty">No matching mistakes found.</div>')))+'</section>';
+}
+
+function vMore(){
+  var s=state.settings,exOpts=Object.keys(allExams()).map(function(id){return '<option value="'+id+'"'+(id===s.exam?' selected':'')+'>'+esc(allExams()[id].name)+'</option>';}).join('');
+  var pat=Object.keys(EXAMS).map(function(id){
+    var e=EXAMS[id],mSecs=e.secs.filter(function(x){return !x.qual;}),qSecs=e.secs.filter(function(x){return x.qual;});
+    var mMarks=sum(mSecs,function(x){return x.q*x.m;})+(qSecs.length?' + '+sum(qSecs,function(x){return x.q*x.m;})+' Qual':'');
+    return '<tr><td>'+esc(e.name)+'</td><td class="r num">'+sum(e.secs,function(x){return x.q;})+'</td><td class="r num">'+mMarks+'</td><td class="r num">'+e.dur+' min</td><td class="r num">-'+r2(e.secs[0].neg)+'</td><td>'+(e.ok?'<span class="pill good">Verified</span>':'<span class="pill warn">Confirm</span>')+'</td></tr>';
+  }).join('');
+  var custom=s.custom.map(function(c){return '<div class="item"><div class="t">'+esc(c.name)+'<div class="muted small">'+c.secs.map(function(x){return esc(x.n)+' '+x.q;}).join(' · ')+'</div></div><button class="btn sm bad" data-act="delCustom" data-id="'+c.id+'">Remove</button></div>';}).join('');
+  var subOpts=Object.keys(SUBJ_FULL).map(function(k){return '<option value="'+k+'">'+SUBJ_FULL[k]+'</option>';}).join('');
+  var le=s.lastExport?'Last backup: '+fmtD(s.lastExport)+'.':'You have not exported a backup yet.';
+  return '<section class="sec"><h2>Preferences</h2><div class="fgrid"><div class="field"><label for="c-exam">Main exam</label><select id="c-exam" data-chg="setExam">'+exOpts+'</select></div><div class="field"><label for="c-date">Exam date</label><input type="date" id="c-date" value="'+esc(s.examDate)+'" data-chg="setDate"></div><div class="field"><label for="c-target">Target score %</label><input type="number" id="c-target" min="10" max="100" value="'+esc(s.target)+'" data-chg="setTarget"></div><div class="field"><label for="c-hours">Study hours per day</label><input type="number" id="c-hours" min="1" max="12" step="0.5" value="'+esc(s.hours)+'" data-chg="setHours"></div></div><div class="row"><span class="lbl">Theme</span><div class="chips"><button class="chip'+(!s.theme?' on':'')+'" data-act="theme" data-v="">Auto</button><button class="chip'+(s.theme==='light'?' on':'')+'" data-act="theme" data-v="light">Light</button><button class="chip'+(s.theme==='dark'?' on':'')+'" data-act="theme" data-v="dark">Dark</button></div></div></section>'+
+  aiSection()+'<section class="sec"><h2>Backup and restore</h2><div class="muted small">Everything is stored on this device and works with no internet. Browsers can clear site data, so export a backup every week. '+le+' To move to another device, copy the backup text and paste it there.</div><div class="row"><button class="btn pri" data-act="export">Export backup</button><button class="btn" data-act="copyBackup">Copy backup text</button></div><div class="field"><label for="b-text">Backup text (paste here to restore)</label><textarea id="b-text" spellcheck="false" placeholder="Paste backup JSON here"></textarea></div><div class="row"><button class="btn" data-act="importText">Restore from text</button><label class="btn" style="cursor:pointer">Restore from file<input type="file" id="b-file" accept=".json,application/json" hidden></label></div></section>'+
+  '<section class="sec"><h2>Exam patterns used</h2><div class="muted small">Cross-checked on official SSC & RRB patterns. Always confirm against your shift notification.</div><div class="scroll"><table><thead><tr><th>Exam</th><th class="r">Qs</th><th class="r">Marks</th><th class="r">Time</th><th class="r">Negative</th><th>Status</th></tr></thead><tbody>'+pat+'</tbody></table></div><div class="row"><a href="https://ssc.gov.in" target="_blank" rel="noopener">ssc.gov.in</a><a href="https://indianrailways.gov.in" target="_blank" rel="noopener">indianrailways.gov.in</a><span class="muted small">Links need internet.</span></div></section>'+
+  '<section class="sec"><h2>Custom exam</h2><div class="muted small">Add any other exam. Each section has questions, marks per question and negative marks.</div>'+custom+'<div class="fgrid"><div class="field"><label for="x-name">Exam name</label><input type="text" id="x-name" placeholder="RRB JE CBT 1"></div><div class="field"><label for="x-dur">Duration (min)</label><input type="number" id="x-dur" min="10" value="90"></div><div class="field"><label for="x-fam">Family</label><select id="x-fam"><option value="ssc">SSC</option><option value="rail">Railways</option></select></div></div>'+
+   [1,2,3,4].map(function(i){return '<div class="fgrid"><div class="field"><label for="x-s'+i+'">Section '+i+' subject</label><select id="x-s'+i+'"><option value="">None</option>'+subOpts+'</select></div><div class="field"><label for="x-q'+i+'">Questions</label><input type="number" id="x-q'+i+'" min="1"></div><div class="field"><label for="x-m'+i+'">Marks each</label><input type="number" id="x-m'+i+'" step="0.25" value="1"></div><div class="field"><label for="x-n'+i+'">Negative each</label><input type="number" id="x-n'+i+'" step="0.01" value="0.33"></div></div>';}).join('')+'<div><button class="btn" data-act="addCustom">Add exam</button></div></section>'+
+  '<section class="sec"><h2>Reset</h2><div class="row"><button class="btn bad" data-act="reset">'+(state.ui.confirm==='reset'?'Tap again to erase everything':'Erase all data')+'</button></div></section>';
+}
+
+/* ---------- render ---------- */
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(function(){t.hidden=true;},2800);}
+function applyTheme(){var r=document.documentElement;if(state.settings.theme)r.setAttribute('data-theme',state.settings.theme);else r.removeAttribute('data-theme');}
+function render(){
+  var r=curRoute(),view=document.getElementById('view'),html;
+  var main=r.indexOf('test-')===0?'tests':(r.indexOf('edit-')===0?'log':r);
+  if(r==='home')html=vHome();
+  else if(r==='tests')html=vTests();
+  else if(r.indexOf('test-')===0)html=vTest(r.slice(5));
+  else if(r==='log')html=vLog(null);
+  else if(r.indexOf('edit-')===0)html=vLog(r.slice(5));
+  else if(r==='chal')html=vChal();
+  else if(r==='weak')html=vWeak();
+  else if(r==='plan')html=vPlan();
+  else if(r==='errors')html=vErrors();
+  else if(r==='more')html=vMore();
+  else html=vHome();
+  var ex=getExam(state.settings.exam)||EXAMS.cgl1;document.body.setAttribute('data-fam',ex.fam);
+  view.innerHTML=(storageOk?'':'<div class="banner">This browser is blocking storage, so data will be lost when you close the page. Export a backup from Setup.</div>')+html;
+  document.getElementById('nav').innerHTML=navHtml(main);document.getElementById('bar').innerHTML=barHtml(main);
+  document.getElementById('exchip').textContent=ex.name;
+  updateTimerUI();
+  if(r==='log'||r.indexOf('edit-')===0)liveLog();
+  if(view.classList&&render.last!==r){view.classList.remove('enter');void view.offsetWidth;view.classList.add('enter');}
+  if(window.scrollTo&&render.last!==r){try{window.scrollTo(0,0);}catch(e){}}
+  render.last=r;
+}
+function online(){var el=document.getElementById('net');var on=navigator.onLine!==false;el.className='pill '+(on?'good':'warn');el.innerHTML='<span class="dot"></span>'+(on?'Online':'Offline');}
+
+/* ---------- log form logic ---------- */
+function readLog(){
+  var exId=document.getElementById('f-exam').value,ex=getExam(exId);
+  var editId=document.getElementById('f-edit-id')?document.getElementById('f-edit-id').value:'';
+  var t={
+    id:editId||uid(),
+    date:document.getElementById('f-date').value||today(),
+    exam:exId,
+    name:document.getElementById('f-name').value.trim()||'Mock',
+    source:document.getElementById('f-src').value.trim(),
+    diff:document.getElementById('f-diff').value||'moderate',
+    pctile:parseFloat(document.getElementById('f-pctile').value)||0,
+    cutoff:parseFloat(document.getElementById('f-cutoff').value)||0,
+    sectional:!!(document.getElementById('f-sect')&&document.getElementById('f-sect').checked),
+    secs:{},topics:{},mistakes:{},
+    notes:document.getElementById('f-notes').value.trim()
+  };
+  var n=function(id){var el=document.getElementById(id);return el?Math.max(0,parseInt(el.value,10)||0):0;};
+  ex.secs.forEach(function(s){t.secs[s.k]={c:n('s-'+s.k+'-c'),w:n('s-'+s.k+'-w'),t:n('s-'+s.k+'-t')};});
+  Array.prototype.forEach.call(document.querySelectorAll('#logform [data-key]'),function(el){
+    var v=Math.max(0,parseInt(el.value,10)||0);if(!v)return;
+    var k=el.getAttribute('data-key');
+    (t.topics[k]||(t.topics[k]={c:0,w:0,u:0}))[el.getAttribute('data-f')]+=v;
+  });
+  Object.keys(MIST).forEach(function(k){t.mistakes[k]=n('m-'+k);});
+  return {t:t,ex:ex,editId:editId};
+}
+function liveLog(){
+  if(!document.getElementById('logform'))return;
+  var r=readLog(),c=testCalc(r.t),bad=false,totalTime=0;
+  r.ex.secs.forEach(function(s,i){
+    var d=c.secs[i],el=document.getElementById('sl-'+s.k);
+    totalTime+=d.t;
+    var over=d.att>s.q;
+    var topC=0,topW=0,topU=0;
+    Array.prototype.forEach.call(document.querySelectorAll('#logform [data-sk="'+s.k+'"]'),function(inp){
+      var v=Math.max(0,parseInt(inp.value,10)||0);
+      if(inp.dataset.f==='c')topC+=v;else if(inp.dataset.f==='w')topW+=v;else topU+=v;
+      inp.classList.remove('bad');
+    });
+    var topMismatch=(topC>d.c)||(topW>d.w)||(topU>d.un);
+    if(over||topMismatch)bad=true;
+    if(topMismatch){
+      Array.prototype.forEach.call(document.querySelectorAll('#logform [data-sk="'+s.k+'"]'),function(inp){
+        var v=Math.max(0,parseInt(inp.value,10)||0);
+        if(v>0&&((inp.dataset.f==='c'&&topC>d.c)||(inp.dataset.f==='w'&&topW>d.w)||(inp.dataset.f==='u'&&topU>d.un)))inp.classList.add('bad');
+      });
+    }
+    ['c','w'].forEach(function(f){var inp=document.getElementById('s-'+s.k+'-'+f);if(inp)inp.className=(over||topMismatch)?'bad':'';});
+    if(el){
+      if(over)el.innerHTML='<span style="color:var(--bad);font-weight:600">Right + wrong exceeds '+s.q+' questions.</span>';
+      else if(topMismatch)el.innerHTML='<span style="color:var(--bad);font-weight:600">Topic sum ('+topC+'R/'+topW+'W/'+topU+'L) exceeds section ('+d.c+'R/'+d.w+'W/'+d.un+'L).</span>';
+      else el.textContent=(d.att||topU)?'Left blank '+d.un+' · Section score '+d.score+' of '+d.max+(d.att?' · Accuracy '+r1(d.acc*100)+'%':''):'';
+    }
+  });
+  var timeWarn=totalTime>r.ex.dur?' · ⚠️ Time '+totalTime+'m > '+r.ex.dur+'m':'';
+  document.getElementById('liveTxt').textContent='Score '+c.score+' / '+c.max+' ('+r1(c.pct)+'%) · '+c.att+' attempted'+timeWarn;
+  liveLog.bad=bad;
+}
+
+/* ---------- plan generation ---------- */
+function genPlan(N,H){
+  var s=state.settings,ex=getExam(s.exam)||EXAMS.cgl1,r=rank(),pool=r.filter(function(t){return t.status==='red'||t.status==='amber';}).sort(function(a,b){return b.pri-a.pri;}),note='';
+  if(!sortedTests(function(t){return t.exam===s.exam;}).length)return {err:'Add at least one mock test for '+ex.name+' first. The plan is built from your results.'};
+  if(!pool.length){
+    var ss=subjStats(s.exam).slice(0,2).map(function(x){return x.subj;});
+    ss.forEach(function(sj){pool=pool.concat(r.filter(function(t){return t.subj===sj&&t.wt===3&&t.status!=='green';}));});
+    note='No topic-wise results yet, so this plan uses the high-weight topics of your two weakest subjects in '+ex.name+'.';
+  }
+  if(!pool.length)return {err:'Every tracked topic is strong. Keep taking mocks and add topic results to refresh this.'};
+  pool=pool.slice(0,Math.max(6,Math.min(pool.length,N*2)));
+  if(!note)note=pool.length+' topics chosen from your latest results. Weakest topics repeat more often.';
+  var reds=pool.filter(function(t){return t.status==='red';}),seq=pool.concat(reds,pool.slice(0,Math.ceil(pool.length/2)),reds);
+  var start=today(),M=H*60,first={},p=0,days=[],pe=pendingErrors().length>0,ws=subjStats(s.exam)[0],wsName=ws?SUBJ_FULL[ws.subj]:'your weakest section';
+  for(var d=0;d<N;d++){
+    var date=addDays(start,d),tasks=[],id=0,used=0,full=(d===N-1)||((d+1)%14===0),sect=!full&&(d+1)%7===0;
+    var mk=function(txt,min,topic){tasks.push({id:'d'+d+'-'+(id++),txt:txt,min:min,done:false,topic:topic||''});used+=min;};
+    var rec=0;Object.keys(first).forEach(function(k){if(rec<2&&INT.indexOf(d-first[k].d)>=0){mk('Recall ['+SUBJ[tsubj(k)]+'] '+tname(k)+': redo 10 questions from your mistakes and notes',20,k);rec++;}});
+    if(full){mk('Full mock for '+ex.name+' ('+ex.dur+' min), then add it under Add test',ex.dur,'');mk('Analyse the mock: update weak topics and log mistakes',30,'');}
+    else if(sect){mk('Sectional test on '+wsName+' (timed)',30,'');mk('Review every wrong answer from the sectional',20,'');}
+    if(pe&&!full){mk('Mistake notebook: review pending questions',20,'');}
+    var slots=Math.max(1,Math.floor((M-used)/45));if(full)slots=Math.min(slots,1);
+    for(var i=0;i<slots;i++){
+      var t=null,tries=0;
+      while(tries<seq.length){var c=seq[p++%seq.length];tries++;if(!tasks.some(function(x){return x.topic===c.key;})){t=c;break;}}
+      if(!t)break;
+      if(!first[t.key]){first[t.key]={d:d};mk('Learn ['+SUBJ[t.subj]+'] '+t.name+': concept notes and 10 solved examples',45,t.key);}
+      else mk('Practice ['+SUBJ[t.subj]+'] '+t.name+': 25 timed questions',45,t.key);
+    }
+    days.push({date:date,tasks:tasks});
+  }
+  return {plan:{created:start,n:N,hours:H,note:note,days:days}};
+}
+
+/* ---------- AI coach & Testbook Auto-Fill ---------- */
+function exportJson(){var c=JSON.parse(JSON.stringify(state));c.settings.ai.key='';c.ui={};return JSON.stringify(c);}
+function mdLite(t){
+  var h=esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>'),out='',ul=false;
+  h.split('\n').forEach(function(l){
+    var m=l.match(/^\s*[-*•]\s+(.*)/);
+    if(m){if(!ul){out+='<ul>';ul=true;}out+='<li>'+m[1]+'</li>';}
+    else{if(ul){out+='</ul>';ul=false;}if(l.trim())out+='<p>'+l+'</p>';}
+  });
+  return out+(ul?'</ul>':'');
+}
+function aiSys(){return 'You are a strict but encouraging coach for Indian government exams (SSC and RRB). Use only the numbers and facts given. Do not invent exam news or syllabus facts. Reply in '+state.settings.ai.lang+(state.settings.ai.lang==='Hinglish'?' (Hindi written in Roman letters)':'')+'. Keep it under 220 words, with short bullet points.';}
+function testData(t){
+  var c=testCalc(t),s=state.settings,L=[c.ex.name+': score '+c.score+' of '+c.max+' ('+r1(c.pct)+'%), target '+(+s.target||70)+'%, negative marks lost '+c.loss+'.'];
+  if(t.pctile>0)L.push('Percentile: '+t.pctile+'%.');
+  if(t.cutoff>0)L.push('Cutoff: '+t.cutoff+'.');
+  if(s.examDate){var dd=dayDiff(today(),s.examDate);if(dd>=0)L.push('Exam is in '+dd+' days. Study hours per day: '+s.hours+'.');}
+  c.secs.forEach(function(x){L.push(x.s.n+': '+x.c+' right, '+x.w+' wrong, '+x.un+' blank of '+x.s.q+', accuracy '+r1(x.acc*100)+'%'+(x.t?', '+x.t+' min':'')+'.');});
+  var m=t.mistakes||{};L.push('Mistake causes: '+Object.keys(MIST).map(function(k){return MIST[k]+' '+(m[k]|0);}).join(', ')+'.');
+  var wk=rank().filter(function(x){return x.status==='red'||x.status==='amber';}).sort(function(a,b){return b.pri-a.pri;}).slice(0,6);
+  if(wk.length)L.push('Weakest topics overall: '+wk.map(function(x){return x.name+' '+r1(x.acc*100)+'%';}).join(', ')+'.');
+  return L.join('\n')+'\n\nGive: 1) the two biggest reasons marks were lost, 2) what to do in the next 3 days, 3) one exam-time strategy change.';
+}
+function errData(e){return 'Topic: '+SUBJ_FULL[tsubj(e.topic)]+' / '+tname(e.topic)+'.\nQuestion note: '+e.q+'\nMy note on the method: '+(e.fix||'none')+'\n\nExplain the correct method step by step, give one shortcut if one exists, then one similar practice question with its answer at the end. If the question note is too vague to solve, say what is missing.';}
+
+function askAI(sys,prompt,imgPart){
+  var ai=state.settings.ai;
+  if(!ai.key)return Promise.reject(new Error('Add your free Gemini API key in Setup first.'));
+  if(navigator.onLine===false)return Promise.reject(new Error('You are offline. AI needs internet; everything else still works.'));
+  var parts=[{text:prompt}];
+  if(imgPart)parts.push(imgPart);
+  var body={systemInstruction:{parts:[{text:sys}]},contents:[{role:'user',parts:parts}],generationConfig:{temperature:.3,maxOutputTokens:2048}};
+  return fetch('https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(ai.model)+':generateContent',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':ai.key},body:JSON.stringify(body)})
+   .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {r:r,j:j};});},function(){throw new Error('Could not reach Gemini. Check internet connection.');})
+   .then(function(x){
+     if(!x.r.ok){
+       var st=x.r.status,msg=x.j&&x.j.error&&x.j.error.message||'';
+       throw new Error(st===429?'Free limit reached. Wait a minute or switch model in Setup.':st===404?'Model name not found. Choose another model in Setup.':(st===400&&/key/i.test(msg))||st===401?'The API key looks invalid. Paste it again in Setup.':st===403?'This key is not allowed here.':'Gemini error '+st+(msg?': '+msg.slice(0,120):''));
+     }
+     var c=x.j.candidates&&x.j.candidates[0],txt=c&&c.content&&c.content.parts?c.content.parts.map(function(p){return p.text||'';}).join('').trim():'';
+     if(!txt)throw new Error('Gemini returned no text. Try again.');
+     return txt;
+   });
+}
+
+var pendingImg=null;
+function parseScoreWithAI(){
+  var exId=document.getElementById('f-exam').value,ex=getExam(exId);
+  var rawTxt=(document.getElementById('af-text').value||'').trim();
+  if(!rawTxt&&!pendingImg){toast('Paste Testbook scorecard/answer key text or upload a screenshot first.');return;}
+  var secSchema=ex.secs.map(function(s){return s.k+' ('+s.n+', subject:'+s.subj+', maxQ:'+s.q+')';}).join(', ');
+  var topicKeys=[];
+  ex.secs.forEach(function(s){TOP[s.subj].forEach(function(tp){topicKeys.push(tkey(s.subj,tp[0]));});});
+  var sys='Extract mock test scorecard or answer key numbers into strict JSON only (no markdown backticks). Schema: {"name":"string","source":"Testbook","pctile":0,"cutoff":0,"secs":{"<secKey>":{"c":0,"w":0,"t":0}},"topics":{"<subj:TopicName>":{"c":0,"w":0,"u":0}}}. Here c=correct, w=wrong, u=unattempted/skipped. Available section keys: '+secSchema+'. Valid topic keys: '+topicKeys.join(', ')+'. Only include fields explicitly found in the input.';
+  state.ui.busy='parse';render();
+  askAI(sys,'Extract scorecard/answer-key data from this test result:\n'+rawTxt,pendingImg).then(function(out){
+    state.ui.busy='';render();
+    try{
+      var clean=out.replace(/```json|```/gi,'').trim();
+      var data=JSON.parse(clean);
+      if(data.name&&document.getElementById('f-name'))document.getElementById('f-name').value=data.name;
+      if(data.source&&document.getElementById('f-src')&&!document.getElementById('f-src').value)document.getElementById('f-src').value=data.source;
+      if(data.pctile&&document.getElementById('f-pctile'))document.getElementById('f-pctile').value=data.pctile;
+      if(data.cutoff&&document.getElementById('f-cutoff'))document.getElementById('f-cutoff').value=data.cutoff;
+      if(data.secs){
+        Object.keys(data.secs).forEach(function(sk){
+          var sv=data.secs[sk]||{};
+          if(document.getElementById('s-'+sk+'-c')&&sv.c!=null)document.getElementById('s-'+sk+'-c').value=sv.c;
+          if(document.getElementById('s-'+sk+'-w')&&sv.w!=null)document.getElementById('s-'+sk+'-w').value=sv.w;
+          if(document.getElementById('s-'+sk+'-t')&&sv.t!=null)document.getElementById('s-'+sk+'-t').value=Math.round(sv.t);
+        });
+      }
+      if(data.topics){
+        Object.keys(data.topics).forEach(function(tk){
+          var tv=data.topics[tk]||{};
+          var cInp=document.querySelector('#logform [data-key="'+tk+'"][data-f="c"]');
+          var wInp=document.querySelector('#logform [data-key="'+tk+'"][data-f="w"]');
+          var uInp=document.querySelector('#logform [data-key="'+tk+'"][data-f="u"]');
+          if(cInp&&tv.c!=null)cInp.value=tv.c;
+          if(wInp&&tv.w!=null)wInp.value=tv.w;
+          if(uInp&&tv.u!=null)uInp.value=tv.u;
+        });
+      }
+      liveLog();
+      toast('Scorecard auto-filled! Please verify numbers and tap Save.');
+    }catch(e){
+      toast('Could not parse AI output. Check scorecard text and try again.');
+    }
+  },function(err){
+    state.ui.busy='';render();toast(err.message);
+  });
+}
+
+function runAI(busyKey,sys,prompt,store){
+  state.ui.busy=busyKey;state.ui.aiErr=null;render();
+  askAI(sys,prompt).then(function(txt){store(txt);state.ui.busy='';save();render();},function(err){state.ui.busy='';state.ui.aiErr={k:busyKey,m:err.message};save();render();});
+}
+function aiBtn(act,id,key,obj,label){
+  var ai=state.settings.ai,busy=state.ui.busy===key;
+  if(!ai.key)return '<a class="btn sm" href="#more" style="text-decoration:none">Add free API key</a>';
+  return '<button class="btn '+(obj.ai?'':'pri ')+'sm" data-act="'+act+'" data-id="'+id+'"'+(state.ui.busy?' disabled':'')+'>'+(busy?'Thinking...':(obj.ai?'Ask again':label))+'</button>';
+}
+function aiOut(key,obj){
+  var e=state.ui.aiErr&&state.ui.aiErr.k===key?'<div class="ins bad">'+esc(state.ui.aiErr.m)+'</div>':'';
+  return e+(obj.ai?'<div class="aitext">'+mdLite(obj.ai.text)+'</div><div class="muted small">AI can be wrong, so cross-check with your books. '+esc(obj.ai.model)+' · '+fmtD(obj.ai.at)+'</div>':'');
+}
+function aiTestBox(t){return '<section class="sec"><header><h3>AI Coach</h3>'+aiBtn('aiTest',t.id,'t'+t.id,t,'Analyse with AI')+'</header>'+(t.ai||state.ui.aiErr?aiOut('t'+t.id,t):'<div class="muted small">Coaching from this test\'s numbers, your weak topics and your target. Needs internet and a free API key.</div>')+'</section>';}
+function aiErrBox(e){return '<div class="aibox"><div class="row">'+aiBtn('aiErr',e.id,'e'+e.id,e,'Explain with AI')+'</div>'+aiOut('e'+e.id,e)+'</div>';}
+function aiSection(){
+  var ai=state.settings.ai,has=!!ai.key,models=['gemini-2.5-flash','gemini-2.5-flash-lite','gemini-2.5-pro'],known=models.indexOf(ai.model)>=0;
+  return '<section class="sec"><header><h2>AI Coach & Testbook Auto-Fill (your own key)</h2>'+(has?'<span class="pill good">Key saved ····'+esc(ai.key.slice(-4))+'</span>':'<span class="pill warn">No key yet</span>')+'</header>'+
+  '<div class="muted small">Uses the Google Gemini free tier for AI coaching and automatic Testbook scorecard / answer key parsing.</div>'+
+  '<ol class="steps small"><li>Open <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> and sign in with Google.</li><li>Create an API key and copy it.</li><li>Paste it below and tap Save.</li></ol>'+
+  '<div class="fgrid"><div class="field"><label for="ai-key">API key</label><input type="password" id="ai-key" autocomplete="off" spellcheck="false" placeholder="'+(has?'Saved. Paste a new key to replace it':'Paste your Gemini API key')+'"></div>'+
+  '<div class="field"><label for="ai-model">Model</label><select id="ai-model">'+models.map(function(m){return '<option value="'+m+'"'+(m===ai.model?' selected':'')+'>'+m+(m==='gemini-2.5-flash'?' (default)':'')+'</option>';}).join('')+'<option value="other"'+(known?'':' selected')+'>Other model ID</option></select></div>'+
+  '<div class="field"><label for="ai-model2">Other model ID</label><input type="text" id="ai-model2" value="'+(known?'':esc(ai.model))+'" placeholder="Only if you chose Other"></div>'+
+  '<div class="field"><label for="ai-lang">Reply language</label><select id="ai-lang">'+['Hinglish','English','Hindi'].map(function(l){return '<option'+(l===ai.lang?' selected':'')+'>'+l+'</option>';}).join('')+'</select></div></div>'+
+  '<div class="row"><button class="btn pri" data-act="aiSave">Save</button><button class="btn" data-act="aiTestKey">Test key</button>'+(has?'<button class="btn bad" data-act="aiRemove">Remove key</button>':'')+'</div>'+
+  '<div class="muted small">The key stays on this device and is excluded from backups.</div></section>';
+}
+
+/* ---------- actions ---------- */
+function dl(json){try{var b=new Blob([json],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='mock-lens-backup-'+today()+'.json';document.body.appendChild(a);a.click();a.remove();}catch(e){}}
+function importJson(txt){
+  var o;try{o=JSON.parse(txt);}catch(e){toast('That is not valid backup text.');return;}
+  if(!o||!Array.isArray(o.tests)||!o.settings){toast('This does not look like a Mock Lens backup.');return;}
+  var keep=state.settings.ai.key;state=fix(o);state.settings.ai.key=keep;save();applyTheme();render();toast('Backup restored: '+state.tests.length+' tests.');
+}
+function act(a,d,el){
+  var s=state.settings;
+  if(a==='saveTest'){
+    var r=readLog();liveLog();
+    if(liveLog.bad){toast('Fix the highlighted sections first.');return;}
+    var c=testCalc(r.t);
+    if(!c.att){toast('Enter correct and wrong answers for at least one section.');return;}
+    if(r.editId){
+      var idx=state.tests.findIndex(function(x){return x.id===r.editId;});
+      if(idx>=0){
+        r.t.ai=state.tests[idx].ai;
+        state.tests[idx]=r.t;
+      }else state.tests.push(r.t);
+      toast('Test updated.');
+    }else{
+      state.tests.push(r.t);
+      toast('Test saved.');
+    }
+    logActivity();
+    state.ui.logExam=null;pendingImg=null;save();location.hash='#test-'+r.t.id;
+  }
+  else if(a==='aiParseScore'){parseScoreWithAI();}
+  else if(a==='chartPt'){state.ui.chartPt=parseInt(d.idx,10);render();}
+  else if(a==='toggleSide'){s.sideCollapsed=!s.sideCollapsed;save();var sh=document.getElementById('shell');if(sh)sh.classList.toggle('collapsed',!!s.sideCollapsed);}
+  else if(a==='timerToggle'){toggleTimer();}
+  else if(a==='timerSet'){setTimerMin(parseInt(d.m,10)||15);}
+  else if(a==='presetChal'){
+    var presets=[
+      {title:'Weekly Target: 10 Mocks',days:7,target:10,scope:'all'},
+      {title:'7-Day Full Mock Sprint',days:7,target:5,scope:'full'},
+      {title:'14-Day Consistency Marathon',days:14,target:12,scope:'all'},
+      {title:'30-Day Exam Readiness',days:30,target:25,scope:'full'}
+    ];
+    var p=presets[parseInt(d.idx,10)||0];
+    if(document.getElementById('ch-title'))document.getElementById('ch-title').value=p.title;
+    if(document.getElementById('ch-target'))document.getElementById('ch-target').value=p.target;
+    if(document.getElementById('ch-days'))document.getElementById('ch-days').value=p.days;
+    if(document.getElementById('ch-scope'))document.getElementById('ch-scope').value=p.scope;
+    toast('Preset loaded — tap Start Challenge!');
+  }
+  else if(a==='addChal'){
+    var title=(document.getElementById('ch-title').value||'').trim()||'Mock Challenge';
+    var target=Math.max(1,parseInt(document.getElementById('ch-target').value,10)||10);
+    var days=Math.max(1,parseInt(document.getElementById('ch-days').value,10)||7);
+    var scope=document.getElementById('ch-scope').value||'all';
+    var exam=document.getElementById('ch-exam').value||'all';
+    var stDate=today(),enDate=addDays(stDate,days-1);
+    state.challenges.push({id:uid(),title:title,start:stDate,end:enDate,target:target,scope:scope,exam:exam});
+    logActivity();save();render();toast('🏆 Challenge started! Go crush it!');
+  }
+  else if(a==='delChal'){state.challenges=state.challenges.filter(function(c){return c.id!==d.id;});save();render();toast('Challenge removed.');}
+  else if(a==='delTest'){if(state.ui.confirm===d.id){state.tests=state.tests.filter(function(t){return t.id!==d.id;});state.ui.confirm=null;save();toast('Test deleted.');}else state.ui.confirm=d.id;render();}
+  else if(a==='clearSample'){state.tests=state.tests.filter(function(t){return !t.sample;});state.errors=state.errors.filter(function(e){return !e.sample;});state.challenges=state.challenges.filter(function(c){return !c.sample;});save();render();toast('Examples cleared.');}
+  else if(a==='weakF'){state.ui.weakF=d.f;render();}
+  else if(a==='errF'){state.ui.errF=d.f;render();}
+  else if(a==='errSubj'){state.ui.errSubj=d.f;render();}
+  else if(a==='toggleQuiz'){state.ui.quizMode=!state.ui.quizMode;state.ui.quizRev=false;render();}
+  else if(a==='quizReveal'){state.ui.quizRev=true;render();}
+  else if(a==='quizPass'){
+    state.errors.forEach(function(e){
+      if(e.id===d.id){
+        e.streak=(e.streak||0)+1;
+        if(e.streak>=2){e.mastered=true;toast('🎉 2/2 streak! Marked as Mastered.');}
+        else toast('Nice! 1/2 streak — one more correct re-attempt to master.');
+      }
+    });
+    state.ui.quizRev=false;state.ui.quizIdx=(state.ui.quizIdx||0)+1;logActivity();save();render();
+  }
+  else if(a==='quizFail'){
+    state.errors.forEach(function(e){if(e.id===d.id)e.streak=0;});
+    state.ui.quizRev=false;state.ui.quizIdx=(state.ui.quizIdx||0)+1;logActivity();save();render();toast('Streak reset — keep it in review!');
+  }
+  else if(a==='revise'){var v=state.rev[d.k]||{n:0,last:''};v.n++;v.last=today();state.rev[d.k]=v;logActivity();save();render();toast('Next recall in '+INT[Math.min(v.n-1,INT.length-1)]+' day(s).');}
+  else if(a==='genPlan'){var N=parseInt(document.getElementById('p-days').value,10)||14,H=parseFloat(document.getElementById('p-hours').value)||3;s.hours=H;var g=genPlan(N,H);if(g.err){state.ui.planMsg=g.err;}else{state.ui.planMsg='';state.plan=g.plan;}logActivity();save();render();}
+  else if(a==='shiftMissed'){
+    if(!state.plan)return;
+    var t0=today(),moved=[];
+    state.plan.days.forEach(function(day){
+      if(day.date<t0){
+        var rem=[];
+        day.tasks.forEach(function(tk){if(!tk.done)moved.push(tk);else rem.push(tk);});
+        day.tasks=rem;
+      }
+    });
+    if(!moved.length){toast('No missed tasks to shift.');return;}
+    var tDay=state.plan.days.filter(function(day){return day.date===t0;})[0];
+    if(!tDay){tDay={date:t0,tasks:[]};state.plan.days.unshift(tDay);}
+    tDay.tasks=tDay.tasks.concat(moved);
+    save();render();toast('Shifted '+moved.length+' missed task(s) to today.');
+  }
+  else if(a==='addErr'){
+    var q=document.getElementById('e-q').value.trim();if(!q){toast('Describe the question first.');return;}
+    state.errors.push({id:uid(),date:today(),topic:document.getElementById('e-topic').value,q:q,why:document.getElementById('e-why').value,fix:document.getElementById('e-fix').value.trim(),streak:0,mastered:false});
+    logActivity();save();render();toast('Mistake saved.');
+  }
+  else if(a==='mast'){state.errors.forEach(function(e){if(e.id===d.id)e.mastered=!e.mastered;});logActivity();save();render();}
+  else if(a==='delErr'){state.errors=state.errors.filter(function(e){return e.id!==d.id;});save();render();}
+  else if(a==='theme'){s.theme=d.v;save();applyTheme();render();}
+  else if(a==='export'){s.lastExport=today();save();var j=exportJson();dl(j);var ta=document.getElementById('b-text');if(ta)ta.value=j;toast('Backup downloaded.');}
+  else if(a==='copyBackup'){
+    var j2=exportJson(),ta2=document.getElementById('b-text');if(ta2)ta2.value=j2;s.lastExport=today();save();
+    var fb=function(){if(ta2){ta2.focus();ta2.select();}toast('Select and copy the text in the box.');};
+    try{navigator.clipboard.writeText(j2).then(function(){toast('Backup copied.');},fb);}catch(e){fb();}
+  }
+  else if(a==='importText'){var tx=document.getElementById('b-text').value.trim();if(!tx){toast('Paste the backup text first.');return;}importJson(tx);}
+  else if(a==='addCustom'){
+    var nm=document.getElementById('x-name').value.trim(),secs=[];
+    [1,2,3,4].forEach(function(i){var sj=document.getElementById('x-s'+i).value,q=parseInt(document.getElementById('x-q'+i).value,10);if(sj&&q>0)secs.push(S('c'+i,SUBJ_FULL[sj],sj,q,parseFloat(document.getElementById('x-m'+i).value)||1,Math.abs(parseFloat(document.getElementById('x-n'+i).value)||0)));});
+    if(!nm||!secs.length){toast('Add a name and at least one section.');return;}
+    s.custom.push({id:'x'+uid(),name:nm,fam:document.getElementById('x-fam').value,dur:parseInt(document.getElementById('x-dur').value,10)||60,ok:0,secs:secs});save();render();toast('Exam added.');
+  }
+  else if(a==='delCustom'){var used=state.tests.some(function(t){return t.exam===d.id;});if(used){toast('Delete the tests for this exam first.');return;}s.custom=s.custom.filter(function(c){return c.id!==d.id;});if(s.exam===d.id)s.exam='cgl1';save();render();}
+  else if(a==='aiTest'){var tt=state.tests.filter(function(x){return x.id===d.id;})[0];if(tt)runAI('t'+d.id,aiSys(),testData(tt),function(x){tt.ai={text:x,at:today(),model:s.ai.model};});}
+  else if(a==='aiErr'){var ee=state.errors.filter(function(x){return x.id===d.id;})[0];if(ee)runAI('e'+d.id,aiSys(),errData(ee),function(x){ee.ai={text:x,at:today(),model:s.ai.model};});}
+  else if(a==='aiSave'){
+    var kv=document.getElementById('ai-key').value.trim(),sel=document.getElementById('ai-model').value,m2=document.getElementById('ai-model2').value.trim();
+    if(kv)s.ai.key=kv;s.ai.model=sel==='other'?(m2||'gemini-2.5-flash'):sel;s.ai.lang=document.getElementById('ai-lang').value;save();render();toast(s.ai.key?'AI settings saved.':'Paste your API key first.');
+  }
+  else if(a==='aiTestKey'){if(!s.ai.key){toast('Save an API key first.');return;}toast('Testing key...');askAI('Reply with the single word OK.','Say OK').then(function(){toast('Key works!');},function(err){toast(err.message);});}
+  else if(a==='aiRemove'){s.ai.key='';save();render();toast('Key removed from this device.');}
+  else if(a==='reset'){if(state.ui.confirm==='reset'){state=fix(null);save();applyTheme();toast('All data erased.');}else state.ui.confirm='reset';render();}
+}
+function chg(a,el){
+  var s=state.settings;
+  if(a==='chartExam'){state.ui.chartExam=el.value;state.ui.chartPt=null;render();}
+  else if(a==='logExam'){state.ui.logExam=el.value;render();}
+  else if(a==='task'){
+    state.plan.days.forEach(function(d){
+      d.tasks.forEach(function(t){
+        if(t.id===el.dataset.id){
+          t.done=el.checked;
+          if(el.checked){
+            logActivity();
+            if(t.topic){
+              var v=state.rev[t.topic]||{n:0,last:''};
+              v.n++;v.last=today();state.rev[t.topic]=v;
+            }
+          }
+        }
+      });
+    });
+    save();render();
+  }
+  else if(a==='setExam'){s.exam=el.value;save();render();}
+  else if(a==='setDate'){s.examDate=el.value;save();}
+  else if(a==='setTarget'){s.target=Math.min(100,Math.max(10,parseInt(el.value,10)||70));save();}
+  else if(a==='setHours'){s.hours=parseFloat(el.value)||3;save();}
+}
+
+/* ---------- offline SW registration ---------- */
+function registerOfflineSW(){
+  if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){
+    var swCode="var C='mocklens-cache-v2';self.addEventListener('install',function(e){e.waitUntil(caches.open(C).then(function(c){return c.addAll([location.href]);}));});self.addEventListener('fetch',function(e){e.respondWith(caches.match(e.request).then(function(r){return r||fetch(e.request).then(function(nr){var cl=nr.clone();caches.open(C).then(function(c){c.put(e.request,cl);});return nr;}).catch(function(){return caches.match(location.href);});}));});";
+    try{
+      var blob=new Blob([swCode],{type:'application/javascript'});
+      navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(function(){});
+    }catch(e){}
+  }
+}
+
+/* ---------- boot ---------- */
+function boot(){
+  state=load();state.ui.busy='';state.ui.confirm=null;state.ui.aiErr=null;save();applyTheme();
+  document.getElementById('app').innerHTML='<div class="shell'+(state.settings.sideCollapsed?' collapsed':'')+'" id="shell"><aside class="side"><div class="side-hd"><div class="brand"><span class="logo"><svg viewBox="0 0 24 24"><path d="M5 19v-8M12 19V5M19 19v-5"/></svg></span><span class="brand-txt">Mock Lens</span></div><button type="button" class="side-btn" data-act="toggleSide" title="Toggle sidebar" aria-label="Toggle sidebar"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button></div><nav class="nav" id="nav" aria-label="Main"></nav><div class="muted small side-foot" style="margin-top:auto">Data stays on this device.</div></aside><div class="mainwrap"><header class="top"><div class="l"><h1 style="font-size:1.1rem" class="brand"><span class="logo"><svg viewBox="0 0 24 24"><path d="M5 19v-8M12 19V5M19 19v-5"/></svg></span><span>Mock Lens</span></h1><span class="pill acc" id="exchip"></span></div><div class="r"><div class="timer-pill" id="top-timer"><span class="num" id="t-disp">15:00</span><button type="button" class="tbtn" id="t-toggle" data-act="timerToggle">Start</button><button type="button" class="tbtn" data-act="timerSet" data-m="15">15m</button><button type="button" class="tbtn" data-act="timerSet" data-m="25">25m</button></div><span id="net" class="pill"></span></div></header><main class="main" id="view"></main></div><nav class="bar" id="bar" aria-label="Main"></nav></div>';
+  document.addEventListener('click',function(e){var el=e.target.closest&&e.target.closest('[data-act]');if(el)act(el.dataset.act,el.dataset,el);});
+  document.addEventListener('input',function(e){
+    if(e.target.closest&&e.target.closest('#logform'))liveLog();
+    if(e.target.id==='err-search'){state.ui.errQ=e.target.value;render();var inp=document.getElementById('err-search');if(inp){inp.focus();inp.setSelectionRange(inp.value.length,inp.value.length);}}
+  });
+  document.addEventListener('change',function(e){
+    var el=e.target;
+    if(el.dataset&&el.dataset.chg)chg(el.dataset.chg,el);
+    if(el.id==='b-file'&&el.files&&el.files[0]){var fr=new FileReader();fr.onload=function(){importJson(String(fr.result));};fr.readAsText(el.files[0]);}
+    if(el.id==='af-img'&&el.files&&el.files[0]){
+      var file=el.files[0],fr2=new FileReader();
+      fr2.onload=function(){
+        var res=String(fr2.result),b64=res.split(',')[1];
+        pendingImg={inlineData:{mimeType:file.type||'image/png',data:b64}};
+        var lbl=document.getElementById('af-img-name');if(lbl)lbl.textContent=file.name;
+      };
+      fr2.readAsDataURL(file);
+    }
+  });
+  window.addEventListener('hashchange',render);window.addEventListener('online',online);window.addEventListener('offline',online);
+  try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}
+  registerOfflineSW();
+  online();render();
+}
+window.__ml={boot:boot,get state(){return state;},testCalc:testCalc,rank:rank,genPlan:genPlan,insights:insights,render:render,curRoute:curRoute};
+boot();
+})();
+</script>
+</body>
+</html>
