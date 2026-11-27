@@ -2,7 +2,7 @@
 
 **Mock Lens** is a lightweight, offline-first mock test analyzer, weak-topic tracker, and spaced-revision planner built specifically for **SSC (CGL, CHSL, GD)** and **Railway (RRB NTPC, Group D, ALP)** aspirants.
 
-🔗 **Live App:** `https://blackknight_9113.github.io/mock-lens/`
+🔗 **Live App:** `https://blackknight9113-star.github.io/mock-lens/`
 
 ---
 
